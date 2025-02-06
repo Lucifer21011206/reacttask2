@@ -177,19 +177,24 @@ const handleOTPverify = () => {
           <Box sx={{ maxWidth: "600px" }}>
             <Typography
               variant="h1"
+              style={{
+                marginRight:"-39%",
+                marginLeft:"45%"
+              }}
               sx={{
+                // marginRight: "calc(-15.625%)",
                 fontSize: { xs: "2.5rem", md: "3.5rem" },
                 fontWeight: "bold",
                 mb: 2,
                 lineHeight: 1.2,
                 mt: 15,
-                ml: 15,
-                mr:-7,
+                // ml: 11,
+                marginRight: "calc(-15.625%)"
               }}
             >
               Find Your Dream Job with AI-Powered Recommendations
             </Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ mb: 4, ml:40,mr:-27 }}>
+            <Typography variant="h6" color="text.secondary" sx={{ mb: 4, ml:34,mr:-19 }}>
               Upload Your CV And Let Our AI Find The Best Matches For You
             </Typography>
             <JobSearchForm />
