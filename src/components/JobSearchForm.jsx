@@ -1,21 +1,12 @@
 import { Box, Button, TextField, InputAdornment } from "@mui/material";
 import { Search, LocationOn, Business } from "@mui/icons-material";
+import styles from './styles.jsx'
+
 
 const JobSearchForm = () => {
   return (
     <Box
-      sx={{
-        // left:70,
-        display: "flex",
-        mr:-31,
-        ml:33,
-        gap: 2,
-        flexWrap: "wrap",
-        p: 2,
-        bgcolor: "background.paper",
-        borderRadius: 2,
-        boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
-      }}
+      sx={styles.JobSearchFormBox}
     >
       <TextField
         select
