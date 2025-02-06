@@ -1,6 +1,7 @@
-import { Box, Button, IconButton, Modal, Typography } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, Modal, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
+import check from "../images/check.svg"
 import AccountCreatedImage from "../images/AccountCreatedImage.svg";
 
 const AccountCreatedModal = ({ open, onClose }) => {
@@ -18,7 +19,7 @@ const AccountCreatedModal = ({ open, onClose }) => {
         <IconButton
           onClick={onClose}
           sx={{
-            mt: 12,
+            mt: 15,
             ml: 70,
             mr: -4,
             position: "absolute",
@@ -50,9 +51,16 @@ const AccountCreatedModal = ({ open, onClose }) => {
             >
               Your account has been created successfully.
             </Typography>
-            <Typography
-              InputProps={{ startAdornment: <CheckCircleTwoToneIcon /> }}
-            />
+            <Typography variant="h6" sx={{ alignItems: "center" }}>
+  <Box
+    component="img"
+    src={check}  // Path to your check.svg image
+    sx={{top:"10px", position:"relative", mt:-3, ml:14, mb:-15}}
+  />
+  
+</Typography>
+
+
             <Typography variant="h5" fontWeight="bold" sx={{ mt: 29, ml: 5 }}>
               Complete Your Profile
             </Typography>
