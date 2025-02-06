@@ -9,7 +9,7 @@ import {
   import CloseIcon from "@mui/icons-material/Close";
   import OTPRightImage from "../images/OTPRightImage.svg";
   
-  const LoginOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
+  const LoginOTPModal = ({ open, onClose, resendOTP, handleSubmit ,handleOTPverify}) => {
     return (
       <Modal open={open} onClose={onClose}>
         <Box
@@ -82,7 +82,8 @@ import {
                 fullWidth
                 variant="contained"
                 sx={{ bgcolor: "#00A76F" }}
-                //   onClick={handleSubmit}
+                //   onClick={handleOTPverify}
+                
               >
                 Submit
               </Button>
