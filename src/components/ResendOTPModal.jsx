@@ -24,7 +24,7 @@ import {
           <IconButton
             onClick={onClose}
             sx={{
-              mt: 12,
+              mt: 18,
               ml: 70,
               mr: -4,
               position: "absolute",
