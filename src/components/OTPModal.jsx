@@ -8,18 +8,13 @@ import {
   } from "@mui/material";
   import CloseIcon from "@mui/icons-material/Close";
   import OTPRightImage from "../images/OTPRightImage.svg";
+  import styles from "./styles";
   
   const OTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
     return (
       <Modal open={open} onClose={onClose}>
         <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-            position: "relative",
-          }}
+          sx={styles.BoxStyle}
         >
           <IconButton
             onClick={onClose}
@@ -38,15 +33,7 @@ import {
             <CloseIcon />
           </IconButton>
           <Box
-            sx={{
-              display: "flex",
-              bgcolor: "white",
-              borderRadius: 2,
-              overflow: "hidden",
-              maxWidth: 800,
-              position: "relative",
-              borderRadius: 6,
-            }}
+            sx={styles.OTPModalBox1}
           >
             <Box sx={{ padding: 4, width: "50%" }}>
               <Typography variant="h5" fontWeight="bold">
@@ -88,13 +75,7 @@ import {
               </Button>
             </Box>
             <Box
-              sx={{
-                width: "50%",
-                bgcolor: "#E6F7F1",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+              sx={styles.OTPModalBox2}
             >
               <Box
                 component="img"
