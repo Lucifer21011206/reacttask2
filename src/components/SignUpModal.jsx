@@ -9,6 +9,7 @@ import {
   } from "@mui/material";
   import CloseIcon from "@mui/icons-material/Close";
   import SignUpRightImage from "../images/signuprightimage1.svg";
+import styles from "./styles";
   
   const SignUpModal = ({
     open,
@@ -21,39 +22,16 @@ import {
     return (
       <Modal open={open} onClose={onClose}>
         <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-            position: "relative",
-          }}
+          sx={styles.BoxStyle}
         >
           <IconButton
             onClick={onClose}
-            sx={{
-              mt: 12,
-              ml: 70,
-              mr: -4,
-              position: "absolute",
-              top: "5px",
-              right: "calc(50% - 400px)",
-              bgcolor: "white",
-              borderRadius: "50%",
-              boxShadow: 1,
-            }}
+            sx={styles.IconButton}
           >
             <CloseIcon />
           </IconButton>
           <Box
-            sx={{
-              display: "flex",
-              bgcolor: "white",
-              borderRadius: 6,
-              overflow: "hidden",
-              maxWidth: 800,
-              position: "relative",
-            }}
+            sx={styles.Box}
           >
             <Box sx={{ padding: 4, width: "50%" }}>
               <Typography variant="h5" fontWeight="bold">
@@ -124,19 +102,13 @@ import {
               </Button>
             </Box>
             <Box
-              sx={{
-                width: "50%",
-                bgcolor: "#E6F7F1",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+              sx={styles.Box2}
             >
               <Box
                 component="img"
                 src={SignUpRightImage}
                 alt="Signup Illustration"
-                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                sx={styles.Box3}
               />
             </Box>
           </Box>
