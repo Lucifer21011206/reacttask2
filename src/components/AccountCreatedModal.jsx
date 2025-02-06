@@ -3,20 +3,15 @@ import CloseIcon from "@mui/icons-material/Close";
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
 import check from "../images/check.svg"
 import AccountCreatedImage from "../images/AccountCreatedImage.svg";
+import styles from './styles.jsx'
 
 const AccountCreatedModal = ({ open, onClose }) => {
   return (
     <Modal open={open} onClose={onClose}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          position: "relative",
-        }}
+      <Box 
+        sx={styles.BoxStyle}
       >
-        <IconButton
+        <IconButton className="AccountCreatedModalCloseIconCss"
           onClick={onClose}
           sx={{
             mt: 15,
@@ -33,14 +28,7 @@ const AccountCreatedModal = ({ open, onClose }) => {
           <CloseIcon />
         </IconButton>
         <Box
-          sx={{
-            display: "flex",
-            bgcolor: "white",
-            borderRadius: 6,
-            overflow: "hidden",
-            maxWidth: 800,
-            position: "relative",
-          }}
+          sx={styles.Box}
         >
           <Box sx={{ padding: 4, width: "50%" }}>
             <Typography variant="h5" fontWeight="bold" sx={{ ml: 7, mt: 3 }}>
@@ -87,13 +75,7 @@ const AccountCreatedModal = ({ open, onClose }) => {
             </Button>
           </Box>
           <Box
-            sx={{
-              width: "50%",
-              bgcolor: "#E6F7F1",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            sx={styles.Box2}
           >
             <Box
               component="img"
