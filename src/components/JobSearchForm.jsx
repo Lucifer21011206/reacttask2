@@ -5,7 +5,10 @@ const JobSearchForm = () => {
   return (
     <Box
       sx={{
+        // left:70,
         display: "flex",
+        mr:-31,
+        ml:33,
         gap: 2,
         flexWrap: "wrap",
         p: 2,
