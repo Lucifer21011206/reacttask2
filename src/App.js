@@ -10,6 +10,7 @@ import LoginModal from "./components/LoginModal";
 import LoginOTPModal from "./components/LoginOTPModal";
 import BackgroundImage from "./components/BackgroundImage";
 import { useTheme } from "@mui/material/styles";
+import LoginResendOTPModal from "./components/LoginResendOTPModal";
 
 export default function App() {
   const theme = useTheme();
@@ -19,6 +20,8 @@ export default function App() {
   const [accountCreated, setAccountCreated] = useState(false);
   const [login, setLogin] = useState(false);
   const [loginOtp, setLoginOtp] = useState(false);
+  const [resendloginforotp, setResendLoginForOTP] = useState(false)
+  
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -26,6 +29,28 @@ export default function App() {
     agree: false,
   });
   const [errors, setErrors] = useState({});
+
+ 
+  const resendloginforotpp = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      // setOpenSignUp(false);
+     
+    }
+  }
+
+  const resendOTP3 = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      setResendLoginForOTP(true);
+      setLoginOtp(false)
+     
+    }
+  }
 
   const handleSubmit = () => {
     let newErrors = {};
@@ -72,7 +97,29 @@ export default function App() {
     }
   };
 
+  const resendOTP2 = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      // setOpenSignUp(false);
+      setLoginOtp(false);
+      setResendOTP(true);
+    }
+  };
+
   const accountCreatedHandler = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      // setOpenSignUp(false);
+      setOpenOTP(false);
+      setAccountCreated(true);
+    }
+  };
+
+  const resendoffacccreate = () => {
     let newErrors = {};
 
     if (Object.keys(newErrors).length === 0) {
@@ -81,10 +128,29 @@ export default function App() {
       setResendOTP(false);
       setAccountCreated(true);
     }
-  };
+  }
 
-  const loginHandler = () => {
+const handleOTPverify = () => {
+
+}
+
+
+  const handleLogin = () => {
     let newErrors = {};
+
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!form.password.trim()) {
+      newErrors.password = "Password is required.";
+    } else if (form.password.length < 8) {
+      newErrors.password = "Password must have at least 8 characters.";
+    }
+
+    setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
       // alert("Form submitted successfully!");
@@ -117,12 +183,13 @@ export default function App() {
                 mb: 2,
                 lineHeight: 1.2,
                 mt: 15,
-                ml: 5,
+                ml: 15,
+                mr:-7,
               }}
             >
               Find Your Dream Job with AI-Powered Recommendations
             </Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
+            <Typography variant="h6" color="text.secondary" sx={{ mb: 4, ml:40,mr:-27 }}>
               Upload Your CV And Let Our AI Find The Best Matches For You
             </Typography>
             <JobSearchForm />
@@ -146,7 +213,7 @@ export default function App() {
         <ResendOTPModal
           open={resendOTP}
           onClose={() => setResendOTP(false)}
-          handleSubmit={accountCreatedHandler}
+          handleSubmit={resendoffacccreate}
         />
         <AccountCreatedModal
           open={accountCreated}
@@ -158,13 +225,19 @@ export default function App() {
           form={form}
           setForm={setForm}
           errors={errors}
-          handleLogin={loginHandler}
+          handleLogin={handleLogin}
         />
         <LoginOTPModal
           open={loginOtp}
           onClose={() => setLoginOtp(false)}
-          resendOTP={resendOTP1}
+          resendOTP={resendOTP3}
           handleSubmit={accountCreatedHandler}
+        />
+        <LoginResendOTPModal
+          open={resendloginforotp}
+          onClose={() => setResendLoginForOTP(false)}
+          // resendOTP={resendOTP3}
+          // handleSubmit={accountCreatedHandler}
         />
       </Box>
     </ThemeProvider>
