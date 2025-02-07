@@ -31,6 +31,40 @@ const styles={
         boxShadow: 1,
     },
     
+    IconButton2:{
+        mt: 16,
+        ml: 7,
+        mr: -4,
+        position: "absolute",
+        top: "5px",
+        right: "calc(50% - 400px)",
+        bgcolor: "white",
+        borderRadius: "50%",
+        boxShadow: 1,
+    },
+    IconButton3:{
+        mt: 70,
+        ml: 17,
+        mr: -4,
+        position: "absolute",
+        top: "5px",
+        right: "calc(50% - 400px)",
+        bgcolor: "white",
+        borderRadius: "50%",
+        boxShadow: 1,
+    },
+    
+    IconButton3:{
+        mt: 1,
+        ml: 7,
+        mr: -4,
+        position: "absolute",
+        top: "5px",
+        right: "calc(50% - 400px)",
+        bgcolor: "white",
+        borderRadius: "50%",
+        boxShadow: 1,
+    },
 
     Box:{
         display: "flex",
