@@ -1,66 +1,39 @@
-import { Box, Button, IconButton, InputAdornment, Modal, Typography } from "@mui/material";
+import { Box, Button, IconButton, Modal, Typography, Grid, useMediaQuery } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
-import check from "../images/check.svg"
+import check from "../images/check.svg";
 import AccountCreatedImage from "../images/AccountCreatedImage.svg";
-import styles from './styles.jsx'
+import styles from "./styles.jsx";
 
 const AccountCreatedModal = ({ open, onClose }) => {
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+
   return (
     <Modal open={open} onClose={onClose}>
-      <Box 
-        sx={styles.BoxStyle}
-      >
-        <IconButton className="AccountCreatedModalCloseIconCss"
+      <Box sx={styles.BoxStyle}>
+        <IconButton
           onClick={onClose}
-          sx={{
-            mt: 15,
-            ml: 70,
-            mr: -4,
-            position: "absolute",
-            top: "5px",
-            right: "calc(50% - 400px)",
-            bgcolor: "white",
-            borderRadius: "50%",
-            boxShadow: 1,
-          }}
+          sx={styles.IconButton2}
         >
           <CloseIcon />
         </IconButton>
-        <Box
-          sx={styles.Box}
-        >
-          <Box sx={{ padding: 4, width: "50%" }}>
-            <Typography variant="h5" fontWeight="bold" sx={{ ml: 7, mt: 3 }}>
-              Account Created
-            </Typography>
-            <Typography
-              sx={{ fontSize: "0.9rem", color: "gray", mb: 3, mt: 1, ml: 3 }}
-            >
+
+        <Grid container sx={styles.Box}>
+          <Grid item xs={12} sm={6} sx={{ padding: 4, textAlign: "center" }}>
+            <Typography variant="h5" fontWeight="bold">Account Created</Typography>
+            <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3, mt: 1 }}>
               Your account has been created successfully.
             </Typography>
-            <Typography variant="h6" sx={{ alignItems: "center" }}>
-  <Box
-    component="img"
-    src={check}  // Path to your check.svg image
-    sx={{top:"10px", position:"relative", mt:-3, ml:14, mb:-15}}
-  />
-  
-</Typography>
 
+            <Box display="flex" justifyContent="center" my={2}>
+              <Box component="img" src={check} sx={{ width: 50, height: 50 }} />
+            </Box>
 
-            <Typography variant="h5" fontWeight="bold" sx={{ mt: 29, ml: 5 }}>
-              Complete Your Profile
-            </Typography>
+            <Typography variant="h5" fontWeight="bold">Complete Your Profile</Typography>
+
             <Button
               fullWidth
               variant="contained"
-              sx={{
-                fontSize: "0.9rem",
-                bgcolor: "#D3D3D3",
-                color: "black",
-                mt: 2,
-              }}
+              sx={{ fontSize: "0.9rem", bgcolor: "#D3D3D3", color: "black", mt: 2 }}
               onClick={onClose}
             >
               Upload your CV/Resume
@@ -73,18 +46,18 @@ const AccountCreatedModal = ({ open, onClose }) => {
             >
               Create your CV/Resume
             </Button>
-          </Box>
-          <Box
-            sx={styles.Box2}
-          >
-            <Box
-              component="img"
-              src={AccountCreatedImage}
-              alt="Signup Illustration"
-              sx={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </Box>
-        </Box>
+          </Grid>
+          {!isSmallScreen && (
+            <Grid item xs={6} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <Box
+                component="img"
+                src={AccountCreatedImage}
+                alt="Signup Illustration"
+                sx={{ width: "100%", height: "100%", maxWidth: "400px", objectFit: "cover" }}
+              />
+            </Grid>
+          )}
+        </Grid>
       </Box>
     </Modal>
   );
