@@ -1,12 +1,21 @@
-import { Box } from "@mui/material";
-// import backgroundImage from "../images/landing_page_background.svg";
-import styles from './styles.jsx'
-
+import { Box, useMediaQuery, useTheme } from "@mui/material";
+import styles from "./styles.jsx";
 
 const BackgroundImage = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box
-      sx={styles.BackgroundImageBox}
+      sx={{
+        ...styles.BackgroundImageBox,
+        backgroundSize: isSmallScreen ? "contain" : "cover",
+        backgroundPosition: "center",
+        backgroundRepeat:"no-repeat",
+        width: "100%",
+        mt:5,
+        height: isSmallScreen ? "50vh" : "100vh",
+      }}
     />
   );
 };
