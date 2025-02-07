@@ -1,51 +1,29 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  IconButton,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Checkbox, IconButton, Modal, TextField, Typography, Grid, useMediaQuery, useTheme } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Login from "../images/Login.svg";
-import styles from './styles.jsx'
+import styles from "./styles";
+import GoogleIcon from "@mui/icons-material/Google";
 
+const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleLogin }) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-const LoginModal = ({ open, onClose,loginsignup, form, setForm, errors, handleLogin }) => {
   return (
     <Modal open={open} onClose={onClose}>
-      <Box
-        sx={styles.BoxStyle}
-      >
+      <Box sx={styles.BoxStyle}>
         <IconButton
           onClick={onClose}
-          sx={{
-            mt: 12,
-            ml: 70,
-            mr: -4,
-            position: "absolute",
-            top: "5px",
-            right: "calc(50% - 400px)",
-            bgcolor: "white",
-            borderRadius: "50%",
-            boxShadow: 1,
-          }}
+          sx={styles.IconButton2}
         >
           <CloseIcon />
         </IconButton>
-        <Box 
-          sx={styles.Box}
-        >
-          <Box sx={{ padding: 4, width: "50%" }}>
+        <Grid container sx={styles.Box}>
+          <Grid item xs={12} sm={6} sx={{ padding: isSmallScreen ? 2 : 4 }}>
             <Typography variant="h5" fontWeight="bold">
               Login Now
             </Typography>
-            <Typography
-              sx={{ fontSize: "0.9rem", color: "gray", mb: 3, mt: 1 }}
-            >
-              To get started, create an account with us. It’s a quick and easy
-              process that only takes a few minutes.
+            <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 }}>
+              To get started, log in with your account. It’s a quick and easy process that only takes a few minutes.
             </Typography>
             <TextField
               fullWidth
@@ -71,56 +49,44 @@ const LoginModal = ({ open, onClose,loginsignup, form, setForm, errors, handleLo
                 checked={form.agree}
                 onChange={(e) => setForm({ ...form, agree: e.target.checked })}
               />
-              <Box sx={{ display: "flex" }}>
-                <Typography variant="body2">Remember me</Typography>{errors.agree && (
-                <Typography color="error">{errors.remember}</Typography>
-              )}
-                <Typography sx={{ ml: 8.5 }}>
-                  <a href="#" color="green">
-                    Forgot password?
-                  </a>
-                </Typography>
-              </Box>
+              <Typography variant="body2">Remember me</Typography>
+              <Typography sx={{ ml: "auto" }}>
+                <a href="#" style={{ color: "green" }}>
+                  Forgot password?
+                </a>
+              </Typography>
             </Box>
-            {errors.agree && (
-              <Typography color="error">{errors.agree}</Typography>
-            )}
+            {errors.agree && <Typography color="error">{errors.agree}</Typography>}
             <Button
               variant="contained"
               fullWidth
-              sx={{
-                bgcolor: "#00A76F",
-                "&:hover": { bgcolor: "#007867" },
-                mb: 2,
-              }}
+              sx={{ bgcolor: "#00A76F", "&:hover": { bgcolor: "#007867" }, mb: 2 }}
               onClick={handleLogin}
             >
               Login
             </Button>
-            <Typography sx={{ mt: 2, mb: 2, ml: 19 }}>OR</Typography>
+            <Typography  sx={{ fontSize: "0.9rem", color: "gray", mb: 3 , ml:19,mt:1,mb:1}}>
+              OR
+            </Typography>
             <Button variant="outlined" fullWidth>
+            <GoogleIcon sx={{mr:1}}/> 
               Sign in with Google
             </Button>
-            <Typography
-              sx={{ fontSize: "0.9rem", color: "gray", mb: 3, mt: 3, ml: 7.5 }}
-            >
-              Don't have an account?{" "}
-              <a href="#" onClick={loginsignup}>
-                Sign Up
-              </a>
+            <Typography sx={{ textAlign: "center", fontSize: "0.9rem", color: "gray", mt: 3 }}>
+              Don't have an account? <a href="#" onClick={loginsignup}>Sign Up</a>
             </Typography>
-          </Box>
-          <Box
-            sx={styles.Box2}
-          >
-            <Box
-              component="img"
-              src={Login}
-              alt="Signup Illustration"
-              sx={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </Box>
-        </Box>
+          </Grid>
+          {!isSmallScreen && (
+            <Grid item xs={6} sx={styles.Box2}>
+              <Box
+                component="img"
+                src={Login}
+                alt="Login Illustration"
+                sx={styles.Box3}
+              />
+            </Grid>
+          )}
+        </Grid>
       </Box>
     </Modal>
   );
