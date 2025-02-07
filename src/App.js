@@ -52,6 +52,29 @@ export default function App() {
     }
   }
 
+  const loginsignup = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      setLogin(false);
+      setOpenSignUp(true)
+     
+    }
+  }
+
+  const signuplogin = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      setLogin(true);
+      setOpenSignUp(false)
+     
+    }
+  }
+
+
   const handleSubmit = () => {
     let newErrors = {};
 
@@ -183,9 +206,11 @@ const handleOTPverify = () => {
               }}
               sx={{
                 // marginRight: "calc(-15.625%)",
-                fontSize: { xs: "2.5rem", md: "3.5rem" },
+                fontSize: { xs: "2.5rem", md: "4rem" },
                 fontWeight: "bold",
+                color: "black",
                 mb: 2,
+              //  ml:90,
                 lineHeight: 1.2,
                 mt: 15,
                 // ml: 11,
@@ -208,6 +233,7 @@ const handleOTPverify = () => {
           setForm={setForm}
           errors={errors}
           handleSubmit={handleSubmit}
+          signuplogin={signuplogin}
         />
         <OTPModal
           open={openOTP}
@@ -231,6 +257,7 @@ const handleOTPverify = () => {
           setForm={setForm}
           errors={errors}
           handleLogin={handleLogin}
+          loginsignup={loginsignup}
         />
         <LoginOTPModal
           open={loginOtp}
