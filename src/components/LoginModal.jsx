@@ -1,8 +1,15 @@
-import { Box, Button, Checkbox, IconButton, Modal, TextField, Typography, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { 
+  Box, Button, Checkbox, IconButton, Modal, TextField, Typography, Grid, 
+  useMediaQuery, useTheme ,InputAdornment
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import LockIcon from "@mui/icons-material/Lock";
+import GoogleIcon from "@mui/icons-material/Google";
 import Login from "../images/Login.svg";
 import styles from "./styles";
-import GoogleIcon from "@mui/icons-material/Google";
+import emailicon from "../images/Vector.svg"
+import passwordicon from "../images/Icon.svg"
+import line from "../images/Line.svg"
 
 const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleLogin }) => {
   const theme = useTheme();
@@ -11,10 +18,7 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={styles.BoxStyle}>
-        <IconButton
-          onClick={onClose}
-          sx={styles.IconButton2}
-        >
+        <IconButton onClick={onClose} sx={styles.IconButton2}>
           <CloseIcon />
         </IconButton>
         <Grid container sx={styles.Box}>
@@ -22,28 +26,112 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
             <Typography variant="h5" fontWeight="bold">
               Login Now
             </Typography>
-            <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 }}>
+            <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 ,mt:2}}>
               To get started, log in with your account. It’s a quick and easy process that only takes a few minutes.
             </Typography>
+
+            {/* Email Input Field */}
             <TextField
               fullWidth
-              label="Enter email address"
+              placeholder="Enter email address"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               error={!!errors.email}
               helperText={errors.email}
-              sx={{ mb: 2 }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                  {/* First Image - Email Icon */}
+                  <Box
+                    component="img"
+                    src={emailicon} // Replace with your actual email icon image path
+                    alt="Email Icon"
+                    sx={{ width: 24, height: 24, ml: 0.5 }} // Adjust size & spacing
+                  />
+                  
+                  {/* Second Image - Additional Icon */}
+                  <Box
+                    component="img"
+                    src={line} // Replace with your actual second image path
+                    alt="Second Icon"
+                    sx={{ width: 24, height: 24, ml: 1 }} // Adjust spacing between icons
+                  />
+                </InputAdornment>
+                ),
+              }}
+              sx={{
+                mb: 2,
+                "& .MuiOutlinedInput-root": {
+                  ml: 0, 
+                  borderRadius: 3 , // Rounded corners
+                  "& input": {
+                  ml:-1.5,
+                    padding: "5%", // Adjust padding for better spacing
+                  },
+                  "& .MuiFormHelperText-root": { 
+      textAlign: "left", 
+      ml: 0, 
+      mt:1.7,
+      mb:-1.5,
+      minHeight: "20px", 
+      display: "flex", 
+      alignItems: "center"
+    },
+                }
+              }}
             />
+
+            {/* Password Input Field */}
             <TextField
-              fullWidth
-              label="Enter Password"
-              type="password"
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-              error={!!errors.password}
-              helperText={errors.password}
-              sx={{ mb: 2 }}
-            />
+  fullWidth
+  placeholder="Enter password"
+  type="password"
+  value={form.password || ""}
+  onChange={(e) => setForm({ ...form, password: e.target.value })}
+  error={!!errors.password}
+  helperText={errors.password}
+  InputProps={{
+    startAdornment: (
+      <InputAdornment position="start">
+      {/* First Image - Email Icon */}
+      <Box
+        component="img"
+        src={passwordicon} // Replace with your actual email icon image path
+        alt="Password Icon"
+        sx={{ width: 24, height: 24, ml: 0.5 }} // Adjust size & spacing
+      />
+      
+      {/* Second Image - Additional Icon */}
+      <Box
+        component="img"
+        src={line} // Replace with your actual second image path
+        alt="Second Icon"
+        sx={{ width: 24, height: 24, ml: 1 }} // Adjust spacing between icons
+      />
+    </InputAdornment>
+    ),
+  }}
+  sx={{
+    mb: 3,
+    "& .MuiOutlinedInput-root": { borderRadius: 3 },
+    "& input": {
+      ml:-1.5,
+        paddingTop: "5%", // Adjusts the vertical position of the placeholder
+        // paddingBottom: "8px", // Ensures content remains centered
+      },
+    "& .MuiFormHelperText-root": { 
+      textAlign: "left", 
+      ml: 0, 
+      mt:1.7,
+      mb:-1.5,
+      minHeight: "20px", 
+      display: "flex", 
+      alignItems: "center"
+    },
+  }}
+/>
+
+            {/* Remember Me & Forgot Password */}
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               <Checkbox
                 checked={form.agree}
@@ -56,33 +144,70 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
                 </a>
               </Typography>
             </Box>
-            {errors.agree && <Typography color="error">{errors.agree}</Typography>}
+
+            {/* Error Message for Agreement Checkbox */}
+            {errors.agree && (
+              <Typography color="error" sx={{ mb: 2, fontSize: "0.9rem" }}>
+                {errors.agree}
+              </Typography>
+            )}
+
+            {/* Login Button */}
             <Button
               variant="contained"
               fullWidth
-              sx={{ bgcolor: "#00A76F", "&:hover": { bgcolor: "#007867" }, mb: 2 }}
+              sx={{
+                bgcolor: "#00A76F",
+                "&:hover": { bgcolor: "#007867" },
+                mb: 2,
+                borderRadius: "9px"
+              }}
               onClick={handleLogin}
             >
               Login
             </Button>
-            <Typography  sx={{ fontSize: "0.9rem", color: "gray", mb: 3 , ml:19,mt:1,mb:1}}>
+
+            {/* OR Separator */}
+            <Typography sx={{ fontSize: "0.9rem", color: "gray", textAlign: "center", my: 1 }}>
               OR
             </Typography>
-            <Button variant="outlined" fullWidth>
-            <GoogleIcon sx={{mr:1}}/> 
-              Sign in with Google
+
+            {/* Google Sign-In Button */}
+            <Button
+              variant="outlined"
+              fullWidth
+              sx={{
+                borderRadius: "9px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textTransform: "none"
+              }}
+            >
+              <GoogleIcon sx={{ mr: 1 }} /> Sign in with Google
             </Button>
+
+            {/* Signup Redirect */}
             <Typography sx={{ textAlign: "center", fontSize: "0.9rem", color: "gray", mt: 3 }}>
               Don't have an account? <a href="#" onClick={loginsignup}>Sign Up</a>
             </Typography>
           </Grid>
+
+          {/* Right-Side Illustration (Only on Large Screens) */}
           {!isSmallScreen && (
             <Grid item xs={6} sx={styles.Box2}>
               <Box
                 component="img"
                 src={Login}
                 alt="Login Illustration"
-                sx={styles.Box3}
+                sx={{
+                  width: "100%",
+                  height: "600px",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  display: "block",
+                  flexShrink: 0
+                }}
               />
             </Grid>
           )}
