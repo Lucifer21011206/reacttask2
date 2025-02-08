@@ -5,7 +5,8 @@ const styles={
         display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh",
+            height: "100%",
+            width:"100%",
             position: "relative",
             margintop: "10%",
     },
@@ -32,7 +33,7 @@ const styles={
     },
     
     IconButton2:{
-        mt: 16,
+        mt: 17,
         ml: 7,
         mr: -4,
         position: "absolute",
@@ -42,17 +43,18 @@ const styles={
         borderRadius: "50%",
         boxShadow: 1,
     },
-    IconButton3:{
-        mt: 70,
-        ml: 17,
-        mr: -4,
-        position: "absolute",
-        top: "5px",
-        right: "calc(50% - 400px)",
-        bgcolor: "white",
-        borderRadius: "50%",
-        boxShadow: 1,
-    },
+    
+IconButton4:{
+    mt: 21,
+    ml: 7,
+    mr: -4,
+    position: "absolute",
+    top: "5px",
+    right: "calc(50% - 400px)",
+    bgcolor: "white",
+    borderRadius: "50%",
+    boxShadow: 1,
+},
     
     IconButton3:{
         mt: 1,
