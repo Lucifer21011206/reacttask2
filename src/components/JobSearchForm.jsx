@@ -1,5 +1,5 @@
 import { Box, Button, TextField, InputAdornment, Grid, useMediaQuery, useTheme } from "@mui/material";
-import { Search, LocationOn, Business } from "@mui/icons-material";
+import { Search, LocationOn, Business, Widgets } from "@mui/icons-material";
 import styles from "./styles.jsx";
 
 const JobSearchForm = () => {
@@ -7,10 +7,21 @@ const JobSearchForm = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={styles.JobSearchFormBox}>
+    <Box 
+    style={{
+      borderradius:"40%",
+      marginRight:"-37%",
+      marginLeft:"31%",
+      paddingRight:"1%",
+      paddingLeft:"0%",
+      
+      // marginTop:"20%"
+    }}
+    sx={styles.JobSearchFormBox}>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} sm={6} md={3}>
           <TextField
+          style={{marginLeft:"2%", borderRadius:"30%"}}
             select
             label="Industry"
             SelectProps={{ native: true }}
