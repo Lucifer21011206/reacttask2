@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -11,23 +12,51 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import OTPRightImage from "../images/OTPRightImage.svg";
-import styles from "./styles.jsx";
+import styles from "./styles";
 
-const LoginResendOTPModal = ({ open, onClose, handleSubmit }) => {
+const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // State to manage OTP input and error message
+  const [otp, setOtp] = useState(Array(6).fill(""));
+  const [error, setError] = useState("");
+
+  // Handle OTP input change
+  const handleChange = (index, value) => {
+    if (/^\d*$/.test(value) && value.length <= 1) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+      setError(""); // Clear error on valid input
+    }
+  };
+
+  // Handle form submission
+  const handleFormSubmit = () => {
+    const otpString = otp.join("");
+    if (!otpString || otpString.length === 0) {
+      setError("Please enter OTP.");
+      return;
+    }
+    
+    if (otpString.length !== 6) {
+      setError("Please enter a complete 6-digit OTP.");
+      return;
+    }
+    
+    // Call the handleSubmit function passed as a prop
+    handleSubmit(otpString);
+  };
 
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={styles.BoxStyle}>
-        <IconButton
-          onClick={onClose}
-          sx={styles.IconButton2}
-        >
+        <IconButton onClick={onClose} sx={styles.IconButton2}>
           <CloseIcon />
         </IconButton>
         <Grid container sx={styles.OTPModalBox1}>
-          <Grid item xs={12} sm={6} sx={{ padding: 4 }}>
+          <Grid item xs={12} sm={6} sx={{ padding: isSmallScreen ? 2 : 4 }}>
             <Typography variant="h5" fontWeight="bold">
               OTP Verification
             </Typography>
@@ -36,29 +65,47 @@ const LoginResendOTPModal = ({ open, onClose, handleSubmit }) => {
               The code is valid for 3 minutes.
             </Typography>
             <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mb: 3 }}>
-              {[...Array(6)].map((_, i) => (
+              {otp.map((digit, index) => (
                 <TextField
-                  key={i}
-                  sx={{ width: isSmallScreen ? 30 : 40, textAlign: "center", borderRadius: 17 }}
+                  key={index}
+                  value={digit}
+                  onChange={(e) => handleChange(index, e.target.value)}
+                  sx={{
+                    ml: 0.1,
+                    mr: 1.5,
+                    width: isSmallScreen ? 30 : 40,
+                    textAlign: "center",
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "9px", // Add rounded corners
+                      textAlign: "center",
+                    },
+                    "& input": {
+                      textAlign: "center", // Ensure text is centered inside input
+                      padding: "10px", // Adjust padding for better spacing
+                    }
+                  }}
+                  inputProps={{ maxLength: 1 }} // Limit input to 1 character
                 />
               ))}
             </Box>
+            {error && (
+              <Typography sx={{ color: "red", mb: 2 }}>
+                {error}
+              </Typography>
+            )}
             <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", color: "gray", mb: 3 }}>
-              <Typography sx={{ color: "#00A76F", cursor: "pointer" }}>Resend</Typography>
-              <Typography>02:58</Typography>
+              <Typography sx={{ color: "#00A76F", cursor: "pointer" }} onClick={resendOTP}>
+                Resend
+              </Typography>
+              <Typography sx={{mr:1.5}}> 02:58</Typography>
             </Box>
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{ bgcolor: "#00A76F" }}
-              onClick={handleSubmit}
-            >
+            <Button fullWidth variant="contained" sx={{ ml:-0.5,bgcolor: "#00A76F" ,width:330}} onClick={handleFormSubmit}>
               Submit
             </Button>
             <Button
               fullWidth
               variant="contained"
-              sx={{ mt: 1, bgcolor: "#33B58A" }}
+              sx={{ mt: 1, bgcolor: "#33B58A" ,ml:-0.5,bgcolor: "#00A76F" ,width:330}}
             >
               OTP Resent Successfully
             </Button>
@@ -69,7 +116,7 @@ const LoginResendOTPModal = ({ open, onClose, handleSubmit }) => {
                 component="img"
                 src={OTPRightImage}
                 alt="Signup Illustration"
-                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                sx={{ width: "480px", height: "100%", objectFit: "cover" }}
               />
             </Grid>
           )}
