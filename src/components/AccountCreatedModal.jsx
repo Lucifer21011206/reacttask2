@@ -12,20 +12,20 @@ const AccountCreatedModal = ({ open, onClose }) => {
       <Box sx={styles.BoxStyle}>
         <IconButton
           onClick={onClose}
-          sx={styles.IconButton2}
+          sx={styles.IconButton4}
         >
           <CloseIcon />
         </IconButton>
 
         <Grid container sx={styles.Box}>
           <Grid item xs={12} sm={6} sx={{ padding: 4, textAlign: "center" }}>
-            <Typography variant="h5" fontWeight="bold">Account Created</Typography>
+            <Typography sx={{mt:2.4}} variant="h5" fontWeight="bold">Account Created</Typography>
             <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3, mt: 1 }}>
               Your account has been created successfully.
             </Typography>
 
             <Box display="flex" justifyContent="center" my={2}>
-              <Box component="img" src={check} sx={{ width: 50, height: 50 }} />
+              <Box component="img" src={check} sx={{ width: 70, height: 70 , mt: 3, mb:2.5}} />
             </Box>
 
             <Typography variant="h5" fontWeight="bold">Complete Your Profile</Typography>
@@ -33,16 +33,16 @@ const AccountCreatedModal = ({ open, onClose }) => {
             <Button
               fullWidth
               variant="contained"
-              sx={{ fontSize: "0.9rem", bgcolor: "#D3D3D3", color: "black", mt: 2 }}
-              onClick={onClose}
+              sx={{ fontSize: "0.9rem", bgcolor: "#D3D3D3", color: "black", mt: 3, height:45 }}
+              
             >
               Upload your CV/Resume
             </Button>
             <Button
               fullWidth
               variant="contained"
-              sx={{ bgcolor: "#D3D3D3", color: "black", mt: 2 }}
-              onClick={onClose}
+              sx={{ bgcolor: "#D3D3D3", color: "black", mt: 2 ,height:45}}
+              
             >
               Create your CV/Resume
             </Button>
@@ -53,7 +53,7 @@ const AccountCreatedModal = ({ open, onClose }) => {
                 component="img"
                 src={AccountCreatedImage}
                 alt="Signup Illustration"
-                sx={{ width: "100%", height: "100%", maxWidth: "400px", objectFit: "cover" }}
+                sx={{ width: "401px", height: "500px", maxWidth: "401px", objectFit: "cover" }}
               />
             </Grid>
           )}
@@ -64,3 +64,4 @@ const AccountCreatedModal = ({ open, onClose }) => {
 };
 
 export default AccountCreatedModal;
+
