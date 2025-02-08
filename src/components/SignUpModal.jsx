@@ -4,15 +4,19 @@ import SignUpRightImage from "../images/signuprightimage1.svg";
 import styles from "./styles";
 import GoogleIcon from "@mui/icons-material/Google";
 
-const SignUpModal = ({ open, onClose, form, setForm, errors, signuplogin,handleSubmit }) => {
+const SignUpModal = ({ open, onClose, form, setForm, errors, signuplogin, handleSubmit }) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={styles.BoxStyle}>
-        <IconButton onClick={onClose} sx={styles.IconButton}>
-          <CloseIcon />
-        </IconButton>
+        {/* Close button */}
+        <Box>
+          <IconButton onClick={onClose} sx={styles.IconButton}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
         <Grid container sx={styles.Box}>
           <Grid item xs={12} sm={6} sx={{ padding: 4 }}>
             <Typography variant="h5" fontWeight="bold">
@@ -21,6 +25,8 @@ const SignUpModal = ({ open, onClose, form, setForm, errors, signuplogin,handleS
             <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 }}>
               To get started, create an account with us. It’s a quick and easy process that only takes a few minutes.
             </Typography>
+
+            {/* Form Fields */}
             <TextField
               fullWidth
               label="Enter email address"
@@ -50,16 +56,21 @@ const SignUpModal = ({ open, onClose, form, setForm, errors, signuplogin,handleS
               type="password"
               sx={{ mb: 2 }}
             />
-            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+            
+            {/* Checkbox */}
+            <Box sx={{ display: "flex", alignItems: "center", mb: 2, ml: -1.5, mt: -1.5 }}>
               <Checkbox
+                sx={{ mt: -0.5 }}
                 checked={form.agree}
                 onChange={(e) => setForm({ ...form, agree: e.target.checked })}
               />
-              <Typography variant="body2">
+              <Typography variant="body2" sx={{ mt: 2 }}>
                 I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
               </Typography>
             </Box>
             {errors.agree && <Typography color="error">{errors.agree}</Typography>}
+
+            {/* Submit Button */}
             <Button
               variant="contained"
               fullWidth
@@ -68,17 +79,24 @@ const SignUpModal = ({ open, onClose, form, setForm, errors, signuplogin,handleS
             >
               Create an account
             </Button>
-            <Typography  sx={{ fontSize: "0.9rem", color: "gray", mb: 3 , ml:19,mt:1,mb:1}}>
+
+            <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3, ml: 19, mt: 1, mb: 1 }}>
               OR
             </Typography>
-            <Button variant="outlined" fullWidth> 
-            <GoogleIcon sx={{mr:1}}/> 
+
+            {/* Google Sign In Button */}
+            <Button variant="outlined" fullWidth>
+              <GoogleIcon sx={{ mr: 1 }} />
               Sign in with Google
             </Button>
+
+            {/* Login link */}
             <Typography sx={{ textAlign: "center", fontSize: "0.9rem", color: "gray", mt: 3 }}>
-              Already have an acoount? <a href="#" onClick={signuplogin}>Login</a>
+              Already have an account? <a href="#" onClick={signuplogin}>Login</a>
             </Typography>
           </Grid>
+
+          {/* Image on large screens */}
           {!isSmallScreen && (
             <Grid item xs={6} sx={styles.Box2}>
               <Box
