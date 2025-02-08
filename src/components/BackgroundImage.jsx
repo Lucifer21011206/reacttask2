@@ -13,7 +13,8 @@ const BackgroundImage = () => {
         backgroundPosition: "center",
         backgroundRepeat:"no-repeat",
         width: "100%",
-        mt:5,
+        mt:1,
+        mr:-6,
         height: isSmallScreen ? "50vh" : "100vh",
       }}
     />
