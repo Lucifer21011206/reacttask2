@@ -45,10 +45,10 @@ const SignUpModal = ({
         {/* Modal Container */}
         <Box
           sx={{
-            width: "90%",
+            width: "100%",
             maxWidth: "900px",
             bgcolor: "background.paper",
-            borderRadius: 4.5,
+            borderRadius: 6,
             boxShadow: 24,
             overflow: "hidden",
             position: "relative",
@@ -67,7 +67,7 @@ const SignUpModal = ({
                 justifyContent: "center",
               }}
             >
-              <Typography variant="h5" marginBottom="3%" fontWeight="bold" gutterBottom onClick={handleSubmit}>
+              <Typography variant="h5" marginBottom="3%" fontWeight="bold" gutterBottom>
                 Create Your Account
               </Typography>
               <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 }}>
@@ -106,7 +106,8 @@ const SignUpModal = ({
     ),
   }}
   sx={{
-    mb: 2,
+    mb: 3,
+    mt:-0.5,
     "& .MuiOutlinedInput-root": { borderRadius: 3 },
     "& input": {
         paddingTop: "5.5%", // Adjusts the vertical position of the placeholder
@@ -115,8 +116,8 @@ const SignUpModal = ({
     "& .MuiFormHelperText-root": { 
       textAlign: "left", 
       ml: 0, 
-      mt:1,
-      mb:-1,
+      mt:1.7,
+      mb:-1.5,
       minHeight: "20px",  // Ensure fixed height for validation text
       display: "flex", 
       alignItems: "center" // Keeps the text vertically aligned
@@ -154,7 +155,7 @@ const SignUpModal = ({
     ),
   }}
   sx={{
-    mb: 2,
+    mb: 3,
     "& .MuiOutlinedInput-root": { borderRadius: 3 },
     "& input": {
         paddingTop: "5%", // Adjusts the vertical position of the placeholder
@@ -163,8 +164,8 @@ const SignUpModal = ({
     "& .MuiFormHelperText-root": { 
       textAlign: "left", 
       ml: 0, 
-      mt:1,
-      mb:-1,
+      mt:1.7,
+      mb:-1.5,
       minHeight: "20px", 
       display: "flex", 
       alignItems: "center"
@@ -202,7 +203,7 @@ const SignUpModal = ({
     ),
   }}
   sx={{
-    mb: 2,
+    mb: 3,
     
     "& .MuiOutlinedInput-root": { borderRadius: 3 },
     "& input": {
@@ -212,8 +213,8 @@ const SignUpModal = ({
     "& .MuiFormHelperText-root": { 
       textAlign: "left", 
       ml: 0, 
-      mt:1,
-    mb:-1,
+      mt:1.7,
+      mb:-1.5,
       minHeight: "20px", 
       display: "flex", 
       alignItems: "center"
@@ -222,7 +223,7 @@ const SignUpModal = ({
 />
               {/* Terms & Conditions Checkbox */}
               <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Checkbox sx={{ml:-1.5,mt:-4.5}}
+                <Checkbox sx={{ml:-1.5,mt:-3}}
                   checked={form.agree || false}
                   onChange={(e) =>
                     setForm({ ...form, agree: e.target.checked })
@@ -319,18 +320,24 @@ const SignUpModal = ({
                   alignItems: "center",
                   justifyContent: "center",
                   bgcolor: "#f0f0f0",
+                  
                 }}
               >
-                <Box
-                  component="img"
-                  src={SignUpRightImage}
-                  alt="Signup Illustration"
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
+            <Box
+  component="img"
+  src={SignUpRightImage}
+  alt="Signup Illustration"
+  sx={{
+    width: "101%",
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: "center", // Ensures the main part of the image remains visible
+    // display: "block", // Removes unwanted gaps
+    flexShrink: 0, // Prevents image from shrinking
+    backgroundPosition: "center",
+  }}
+/>
+
               </Grid>
             )}
           </Grid>
@@ -341,8 +348,8 @@ const SignUpModal = ({
           onClick={onClose}
           sx={{
             position: "absolute",
-            top: "-16px", // Always outside modal
-            right: "-20px", // More space to the right
+            top: "-39px", // Always outside modal
+            right: "-28px", // More space to the right
             zIndex: 10,
             color: "text.primary",
             bgcolor: "background.paper",
