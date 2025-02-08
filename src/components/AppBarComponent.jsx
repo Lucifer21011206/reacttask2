@@ -18,29 +18,22 @@ const AppBarComponent = ({ onSignUpClick, onLoginClick }) => {
               sx={{ height: 43, width: 334, objectFit: "contain", mt:4 }}
             />
           </Box>
-          <Box sx={{ display: "flex", gap: 3,fontSize:43, alignItems: "center" }}>
-            {["Home", "Browse Jobs", "Find Job", "Blog"].map(
+          <Box sx={{ display: "flex", gap: 2,fontSize:43, alignItems: "center" }}>
+            {["Home", "Browse Jobs", "Find Job", "Blog", "Employer"].map(
               (item) => (
                 <Box
                   key={item}
                   color="inherit"
-                  sx={{ color: "text.primary", height:33 , fontSize: "1.5rem", color: "gray",mt:4, mr:1.8}}
+                  sx={{ color: "text.primary", height:33 , fontSize: "1.1rem", color: "gray",mt:5, mr:1.8}}
                 >
                   {item}
                 </Box>
               )
             )}
+            
             <Button
               variant="contained"
-              sx={{ color: "white", backgroundColor: "white", borderRadius: 2, mt:4,mr:4,height:51, bgcolor: "#00A76F",
-                "&:hover": { bgcolor: "#ffffff" ,color:"black"},}}
-              
-            >
-              Employer
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ color: "black", backgroundColor: "white", borderRadius: 2, mt:4,height:51}}
+              sx={{ color: "black", backgroundColor: "white", borderRadius: 2, mt:3.2 ,mr:1,height:53,width: 97}}
               onClick={onSignUpClick}
             >
               Sign Up
@@ -50,8 +43,8 @@ const AppBarComponent = ({ onSignUpClick, onLoginClick }) => {
               sx={{
                 color: "white",
                 borderRadius: 2,
-                mt:3.8,mr:22,height:51,
-                width: 95,
+                mt:3.2,mr:4,height:53,
+                width: 97,
                 elevation:17,
                 bgcolor: "#00A76F",
                 "&:hover": { bgcolor: "#ffffff",color:"black" },
