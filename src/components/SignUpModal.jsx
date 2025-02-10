@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   Box,
   Button,
@@ -9,15 +9,19 @@ import {
   Typography,
   Grid,
   useMediaQuery,
-  InputAdornment,
+  InputAdornment
 } from "@mui/material";
+// import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import CloseIcon from "@mui/icons-material/Close";
+import { Visibility, VisibilityOff } from '@mui/icons-material'; 
+// import GoogleIcon from "@mui/icons-material/Google";
 import SignUpRightImage from "../images/signuprightimage1.svg";
-import GoogleIcon from "../images/google_logo-google_icongoogle-512.svg";
-import emailicon from "../images/Vector.svg";
-import passwordicon from "../images/Icon.svg";
-import line from "../images/Line.svg";
+import GoogleIcon from "../images/google_logo-google_icongoogle-512.svg"
+import emailicon from "../images/Vector.svg"
+import passwordicon from "../images/Icon.svg"
+import line from "../images/Line.svg"
+
 
 const SignUpModal = ({
   open,
@@ -29,6 +33,17 @@ const SignUpModal = ({
   handleSubmit,
 }) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleClickShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   return (
     <Modal
@@ -38,14 +53,12 @@ const SignUpModal = ({
       aria-describedby="signup-modal-description"
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-      <Box
-        sx={{ position: "relative", display: "flex", justifyContent: "center" }}
-      >
+      <Box sx={{ position: "relative", display: "flex", justifyContent: "center" }}>
         {/* Modal Container */}
         <Box
           sx={{
             width: "100%",
-            maxWidth: "840px",
+            maxWidth: "900px",
             bgcolor: "background.paper",
             borderRadius: 6,
             boxShadow: 24,
@@ -66,13 +79,7 @@ const SignUpModal = ({
                 justifyContent: "center",
               }}
             >
-              <Typography
-                variant="h5"
-                marginBottom="3%"
-                fontWeight="bold"
-                gutterBottom
-                sx={{ mt: -0.9 }}
-              >
+              <Typography variant="h5" marginBottom="3%" fontWeight="bold" gutterBottom>
                 Create Your Account
               </Typography>
               <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 }}>
@@ -82,163 +89,180 @@ const SignUpModal = ({
 
               {/* Email Field */}
               <TextField
-                fullWidth
-                placeholder="Enter email address"
-                value={form.email || ""}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                error={!!errors.email}
-                helperText={errors.email}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Box
-                        component="img"
-                        src={emailicon}
-                        alt="Email Icon"
-                        sx={{ width: 24, height: 24, ml: 0.5 }}
-                      />
-                      <Box
-                        component="img"
-                        src={line}
-                        alt="Second Icon"
-                        sx={{ width: 24, height: 24, ml: 1 }}
-                      />
-                    </InputAdornment>
-                  ),
-                }}
-                sx={{
-                  mb: 3,
-                  mt: -0.5,
-                  "& .MuiOutlinedInput-root": { borderRadius: 3 },
-                  "& input": {
-                    paddingTop: "5.5%",
-                  },
-                  "& .MuiFormHelperText-root": {
-                    textAlign: "left",
-                    ml: 0,
-                    mt: 1.7,
-                    mb: -1.5,
-                    minHeight: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                  },
-                }}
-              />
+              
+  fullWidth
+  placeholder="Enter email address"
+  value={form.email || ""}
+  onChange={(e) => setForm({ ...form, email: e.target.value })}
+  error={!!errors.email}
+  helperText={errors.email}
+  InputProps={{
+    startAdornment: (
+      <InputAdornment position="start">
+      {/* First Image - Email Icon */}
+      <Box
+        component="img"
+        src={emailicon} // Replace with your actual email icon image path
+        alt="Email Icon"
+        sx={{ width: 24, height: 24, ml: 0.5 }} // Adjust size & spacing
+      />
+      
+      {/* Second Image - Additional Icon */}
+      <Box
+        component="img"
+        src={line} // Replace with your actual second image path
+        alt="Second Icon"
+        sx={{ width: 24, height: 24, ml: 1 }} // Adjust spacing between icons
+      />
+    </InputAdornment>
+    ),
+  }}
+  sx={{
+    mb: 3,
+    mt:-0.5,
+    "& .MuiOutlinedInput-root": { borderRadius: 3 },
+    "& input": {
+        paddingTop: "5.5%", // Adjusts the vertical position of the placeholder
+        // paddingBottom: "8px", // Ensures content remains centered
+      },
+    "& .MuiFormHelperText-root": { 
+      textAlign: "left", 
+      ml: 0, 
+      mt:1.7,
+      mb:-1.5,
+      minHeight: "20px",  // Ensure fixed height for validation text
+      display: "flex", 
+      alignItems: "center" // Keeps the text vertically aligned
+    },
+  }}
+/>
 
-              <TextField
-                fullWidth
-                placeholder="Enter password"
-                type="password"
-                value={form.password || ""}
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
-                error={!!errors.password}
-                helperText={errors.password}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Box
-                        component="img"
-                        src={passwordicon}
-                        alt="Password Icon"
-                        sx={{ width: 24, height: 24, ml: 0.5 }}
-                      />
-                      <Box
-                        component="img"
-                        src={line}
-                        alt="Second Icon"
-                        sx={{ width: 24, height: 24, ml: 1 }}
-                      />
-                    </InputAdornment>
-                  ),
-                }}
-                sx={{
-                  mb: 3,
-                  "& .MuiOutlinedInput-root": { borderRadius: 3 },
-                  "& input": {
-                    paddingTop: "5%",
-                  },
-                  "& .MuiFormHelperText-root": {
-                    textAlign: "left",
-                    ml: 0,
-                    mt: 1.7,
-                    mb: -1.5,
-                    minHeight: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                  },
-                }}
-              />
-
-              <TextField
-                fullWidth
-                placeholder="Enter confirm password"
-                type="password"
-                value={form.confirmPassword || ""}
-                onChange={(e) =>
-                  setForm({ ...form, confirmPassword: e.target.value })
-                }
-                error={!!errors.confirmPassword}
-                helperText={errors.confirmPassword}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Box
-                        component="img"
-                        src={passwordicon}
-                        alt="Password Icon"
-                        sx={{ width: 24, height: 24, ml: 0.5 }}
-                      />
-                      <Box
-                        component="img"
-                        src={line}
-                        alt="Second Icon"
-                        sx={{ width: 24, height: 24, ml: 1 }}
-                      />
-                    </InputAdornment>
-                  ),
-                }}
-                sx={{
-                  mb: 3,
-                  "& .MuiOutlinedInput-root": { borderRadius: 3 },
-                  "& input": {
-                    paddingTop: "5.5%",
-                  },
-                  "& .MuiFormHelperText-root": {
-                    textAlign: "left",
-                    ml: 0,
-                    mt: 1.7,
-                    mb: -1.5,
-                    minHeight: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                  },
-                }}
-              />
+<TextField
+      fullWidth
+      placeholder="Enter password"
+      type={showPassword ? 'text' : 'password'} // Toggle between text and password
+      value={form.password || ''}
+      onChange={(e) => setForm({ ...form, password: e.target.value })}
+      error={!!errors.password}
+      helperText={errors.password}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            {/* First Image - Password Icon */}
+            <Box
+              component="img"
+              src={passwordicon} // Replace with your actual password icon image path
+              alt="Password Icon"
+              sx={{ width: 24, height: 24, ml: 0.5 }} // Adjust size & spacing
+            />
+            {/* Second Image - Additional Icon */}
+            <Box
+              component="img"
+              src={line} // Replace with your actual second image path
+              alt="Second Icon"
+              sx={{ width: 24, height: 24, ml: 1 }} // Adjust spacing between icons
+            />
+          </InputAdornment>
+        ),
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              onClick={handleClickShowPassword}
+              edge="end"
+              aria-label="toggle password visibility"
+            >
+              {showPassword ? <Visibility /> : <VisibilityOff />} {/* Toggle eye icon */}
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+      sx={{
+        mb: 3,
+        '& .MuiOutlinedInput-root': { borderRadius: 3 },
+        '& input': {
+          paddingTop: '5%', // Adjusts the vertical position of the placeholder
+        },
+        '& .MuiFormHelperText-root': {
+          textAlign: 'left',
+          ml: 0,
+          mt: 1.7,
+          mb: -1.5,
+          minHeight: '20px',
+          display: 'flex',
+          alignItems: 'center',
+        },
+      }}
+    />
+<TextField
+  fullWidth
+  placeholder="Enter confirm password"
+  type={showConfirmPassword ? 'text' : 'password'} // Toggle between text and password
+  value={form.confirmPassword || ""}
+  onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+  error={!!errors.confirmPassword}
+  helperText={errors.confirmPassword}
+  InputProps={{
+    startAdornment: (
+      <InputAdornment position="start">
+      {/* First Image - Email Icon */}
+      <Box
+        component="img"
+        src={passwordicon} // Replace with your actual email icon image path
+        alt="Password Icon"
+        sx={{ width: 24, height: 24, ml: 0.5 }} // Adjust size & spacing
+      />
+      
+      {/* Second Image - Additional Icon */}
+      <Box
+        component="img"
+        src={line} // Replace with your actual second image path
+        alt="Second Icon"
+        sx={{ width: 24, height: 24, ml: 1 }} // Adjust spacing between icons
+      />
+    </InputAdornment>
+    ),
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          onClick={handleClickShowConfirmPassword}
+          edge="end"
+          aria-label="toggle password visibility"
+        >
+          {showConfirmPassword ? <Visibility /> : <VisibilityOff />} {/* Toggle eye icon */}
+        </IconButton>
+      </InputAdornment>
+    ),
+  }}
+  sx={{
+    mb: 3,
+    
+    "& .MuiOutlinedInput-root": { borderRadius: 3 },
+    "& input": {
+      paddingTop: "5.5%", // Adjusts the vertical position of the placeholder
+      // paddingBottom: "8px", // Ensures content remains centered
+    },
+    "& .MuiFormHelperText-root": { 
+      textAlign: "left", 
+      ml: 0, 
+      mt:1.7,
+      mb:-1.5,
+      minHeight: "20px", 
+      display: "flex", 
+      alignItems: "center"
+    },
+  }}
+/>
               {/* Terms & Conditions Checkbox */}
               <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Checkbox
-                  sx={{ ml: -1.5, mt: -3 }}
+                <Checkbox sx={{ml:-1.5,mt:-3}}
                   checked={form.agree || false}
                   onChange={(e) =>
                     setForm({ ...form, agree: e.target.checked })
                   }
                 />
                 <Typography variant="body2">
-                  I agree to the{" "}
-                  <a
-                    href="#"
-                    style={{ color: "#3F76D1", textDecoration: "none" }}
-                  >
-                    Terms & Conditions
-                  </a>{" "}
-                  and{" "}
-                  <a
-                    href="#"
-                    style={{ color: "#3F76D1", textDecoration: "none" }}
-                  >
-                    Privacy Policy
-                  </a>{" "}
-                  and confirm that the country selection is correct
+                  I agree to the <a href="#" style={{ color: "#3F76D1" ,textDecoration: "none"}}>Terms & Conditions</a> and{" "}
+                  <a href="#" style={{ color: "#3F76D1" ,textDecoration: "none"}}>Privacy Policy</a> and confirm that the country selection is correct
                 </Typography>
               </Box>
               {errors.agree && (
@@ -252,8 +276,7 @@ const SignUpModal = ({
                 sx={{
                   bgcolor: "#1F9874",
                   "&:hover": { bgcolor: "#007867" },
-                  mb: 2,
-                  width: "99.5%",
+                  mb: 2,width:"99.5%"
                 }}
                 onClick={handleSubmit}
               >
@@ -266,7 +289,7 @@ const SignUpModal = ({
                   fontSize: "0.9rem",
                   color: "gray",
                   mb: 0.5,
-                  mt: 0.5,
+                  mt:0.5,
                   textAlign: "center",
                 }}
               >
@@ -275,28 +298,30 @@ const SignUpModal = ({
 
               {/* Google Sign-In Button */}
               <Button
-                variant="outlined"
-                sx={{
-                  borderColor: "lightgray",
-                  height: 45,
-                  mt: 1,
-                  mb: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#696969",
-                  fontWeight: "bold",
-                  width: "99.5%",
-                }}
-                fullWidth
-              >
-                <img
-                  src={GoogleIcon}
-                  alt="Google Logo"
-                  style={{ width: 20, height: 20, marginRight: 8 }}
-                />
-                Sign in with Google
-              </Button>
+  variant="outlined"
+  sx={{
+    borderColor: "lightgray",
+    height:45,
+    mt: 1,
+    mb: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#696969",
+    fontWeight:"bold",
+   width:"99.5%"
+  }}
+  fullWidth
+>
+  <img
+    src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
+    alt="Google Logo"
+    style={{ width: 20, height: 20, marginRight: 8 }}
+  />
+  Sign in with Google 
+</Button>
+
+
 
               {/* Login Link */}
               <Typography
@@ -308,11 +333,7 @@ const SignUpModal = ({
                 }}
               >
                 Already have an account?{" "}
-                <a
-                  href="#"
-                  onClick={signuplogin}
-                  style={{ color: "#008080", textDecoration: "none" }}
-                >
+                <a href="#" onClick={signuplogin} style={{ color: "#008080" ,textDecoration: "none"}}>
                   Login
                 </a>
               </Typography>
@@ -330,21 +351,24 @@ const SignUpModal = ({
                   alignItems: "center",
                   justifyContent: "center",
                   bgcolor: "#f0f0f0",
+                  
                 }}
               >
-                <Box
-                  component="img"
-                  src={SignUpRightImage}
-                  alt="Signup Illustration"
-                  sx={{
-                    width: "101%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    flexShrink: 0,
-                    backgroundPosition: "center",
-                  }}
-                />
+            <Box
+  component="img"
+  src={SignUpRightImage}
+  alt="Signup Illustration"
+  sx={{
+    width: "101%",
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: "center", // Ensures the main part of the image remains visible
+    // display: "block", // Removes unwanted gaps
+    flexShrink: 0, // Prevents image from shrinking
+    backgroundPosition: "center",
+  }}
+/>
+
               </Grid>
             )}
           </Grid>
@@ -355,8 +379,8 @@ const SignUpModal = ({
           onClick={onClose}
           sx={{
             position: "absolute",
-            top: "-39px",
-            right: "-28px",
+            top: "-39px", // Always outside modal
+            right: "-28px", // More space to the right
             zIndex: 10,
             color: "text.primary",
             bgcolor: "background.paper",
@@ -366,21 +390,23 @@ const SignUpModal = ({
             "&:hover": {
               bgcolor: "background.default",
             },
+
+            /* Adjustments for responsiveness */
             "@media (max-width: 900px)": {
               top: "-12px",
-              right: "-16px",
+              right: "-16px", // Give more space at smaller screens
             },
             "@media (max-width: 600px)": {
               top: "-10px",
-              right: "8px",
+              right: "8px", // Ensures margin from screen edge
             },
             "@media (max-width: 400px)": {
               top: "-8px",
-              right: "12px",
+              right: "12px", // More space for ultra-small screens
             },
             "@media (max-width: 300px)": {
               top: "-6px",
-              right: "14px",
+              right: "14px", // Ensure it doesn't touch screen edge
             },
           }}
         >
