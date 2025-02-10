@@ -220,22 +220,23 @@ export default function App() {
         >
           <Box sx={{ maxWidth: "600px" }}>
             <Typography
+            
               variant="h1"
               style={{
                 marginRight:"-35%",
                 marginLeft:"32%",
                 paddingRight:"1%",
                 paddingLeft:"0%",
-                marginTop:"20%"
+                marginTop:"23%"
               }}
               sx={{
                 // marginRight: "calc(-15.625%)",
                 fontSize: { xs: "2.5rem", md: "3.9rem" },
                 fontWeight: "bold",
-                color: "black",
+                color: "#000000",
                 mb: 2,
               //  ml:90,
-                lineHeight: 1.2,
+                lineHeight:"81px",
                 mt: 15,
                 mr:19,
                 ml: 11,
