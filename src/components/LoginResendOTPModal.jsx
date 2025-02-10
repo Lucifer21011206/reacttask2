@@ -8,7 +8,7 @@ import {
   Typography,
   Grid,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import OTPRightImage from "../images/OTPRightImage.svg";
@@ -39,12 +39,12 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
       setError("Please enter OTP.");
       return;
     }
-    
+
     if (otpString.length !== 6) {
       setError("Please enter a complete 6-digit OTP.");
       return;
     }
-    
+
     // Call the handleSubmit function passed as a prop
     handleSubmit(otpString);
   };
@@ -60,11 +60,15 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
             <Typography variant="h5" fontWeight="bold">
               OTP Verification
             </Typography>
-            <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 }}>
-              Please enter the 6-digit verification code sent to 's123@gmail.com'.
-              The code is valid for 3 minutes.
+            <Typography
+              sx={{ fontSize: "0.9rem", color: "gray", mb: 3, mt: 2 }}
+            >
+              Please enter the 6-digit verification code sent to
+              's123@gmail.com'. The code is valid for 3 minutes.
             </Typography>
-            <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mb: 3 }}>
+            <Box
+              sx={{ display: "flex", justifyContent: "center", gap: 1, mb: 3 }}
+            >
               {otp.map((digit, index) => (
                 <TextField
                   key={index}
@@ -82,30 +86,50 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
                     "& input": {
                       textAlign: "center", // Ensure text is centered inside input
                       padding: "10px", // Adjust padding for better spacing
-                    }
+                    },
                   }}
                   inputProps={{ maxLength: 1 }} // Limit input to 1 character
                 />
               ))}
             </Box>
             {error && (
-              <Typography sx={{ color: "red", mb: 2 }}>
-                {error}
-              </Typography>
+              <Typography sx={{ color: "red", mb: 2 }}>{error}</Typography>
             )}
-            <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", color: "gray", mb: 3 }}>
-              <Typography sx={{ color: "#00A76F", cursor: "pointer" }} onClick={resendOTP}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                fontSize: "0.9rem",
+                color: "gray",
+                mb: 3,
+              }}
+            >
+              <Typography
+                sx={{ color: "#00A76F", cursor: "pointer" }}
+                onClick={resendOTP}
+              >
                 Resend
               </Typography>
-              <Typography sx={{mr:1.5}}> 02:58</Typography>
+              <Typography sx={{ mr: 1.5 }}> 02:58</Typography>
             </Box>
-            <Button fullWidth variant="contained" sx={{ ml:-0.5,bgcolor: "#00A76F" ,width:330}} onClick={handleFormSubmit}>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{ ml: -0.5, bgcolor: "#00A76F", width: 330 }}
+              onClick={handleSubmit}
+            >
               Submit
             </Button>
             <Button
               fullWidth
               variant="contained"
-              sx={{ mt: 1, bgcolor: "#33B58A" ,ml:-0.5,bgcolor: "#00A76F" ,width:330}}
+              sx={{
+                mt: 1,
+                bgcolor: "#33B58A",
+                ml: -0.5,
+                bgcolor: "#00A76F",
+                width: 330,
+              }}
             >
               OTP Resent Successfully
             </Button>
@@ -116,7 +140,7 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
                 component="img"
                 src={OTPRightImage}
                 alt="Signup Illustration"
-                sx={{ width: "480px", height: "100%", objectFit: "cover" }}
+                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </Grid>
           )}
