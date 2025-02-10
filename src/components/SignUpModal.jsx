@@ -79,12 +79,12 @@ const SignUpModal = ({
                 justifyContent: "center",
               }}
             >
-              <Typography variant="h5" marginBottom="3%" fontWeight="bold" gutterBottom>
+              <Typography variant="h5" marginBottom="3%" fontWeight="bold" gutterBottom >
                 Create Your Account
               </Typography>
-              <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 }}>
-                To get started, create an account with us. It’s a quick and easy
-                process that only takes a few minutes.
+              <Typography sx={{ fontSize: "0.9rem", color: "#333333", mb: 3 }}>
+                To Get Started,We Need You To Create An Account With Us. It’s A Qick And Straightforward Process. That Will Only 
+                Take A Few Minutes.
               </Typography>
 
               {/* Email Field */}
@@ -260,7 +260,7 @@ const SignUpModal = ({
                     setForm({ ...form, agree: e.target.checked })
                   }
                 />
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{mt:-0.5}}>
                   I agree to the <a href="#" style={{ color: "#3F76D1" ,textDecoration: "none"}}>Terms & Conditions</a> and{" "}
                   <a href="#" style={{ color: "#3F76D1" ,textDecoration: "none"}}>Privacy Policy</a> and confirm that the country selection is correct
                 </Typography>
@@ -333,7 +333,7 @@ const SignUpModal = ({
                 }}
               >
                 Already have an account?{" "}
-                <a href="#" onClick={signuplogin} style={{ color: "#008080" ,textDecoration: "none"}}>
+                <a href="#" onClick={signuplogin} style={{ color: "#008080",textDecoration: "none"}}>
                   Login
                 </a>
               </Typography>
