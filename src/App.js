@@ -11,7 +11,6 @@ import LoginOTPModal from "./components/LoginOTPModal";
 import BackgroundImage from "./components/BackgroundImage";
 import { useTheme } from "@mui/material/styles";
 import LoginResendOTPModal from "./components/LoginResendOTPModal";
-import { FormHelperText } from "@mui/material";
 
 export default function App() {
   const theme = useTheme();
@@ -21,8 +20,8 @@ export default function App() {
   const [accountCreated, setAccountCreated] = useState(false);
   const [login, setLogin] = useState(false);
   const [loginOtp, setLoginOtp] = useState(false);
-  const [resendloginforotp, setResendLoginForOTP] = useState(false)
-  
+  const [resendloginforotp, setResendLoginForOTP] = useState(false);
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -31,16 +30,34 @@ export default function App() {
   });
   const [errors, setErrors] = useState({});
 
- 
   const resendloginforotpp = () => {
     let newErrors = {};
 
     if (Object.keys(newErrors).length === 0) {
       // alert("Form submitted successfully!");
       // setOpenSignUp(false);
-     
     }
-  }
+  };
+
+  const signuplogin = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      setOpenSignUp(false);
+      setLogin(true);
+    }
+  };
+
+  const loginsignup = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      setOpenSignUp(true);
+      setLogin(false);
+    }
+  };
 
   const resendOTP3 = () => {
     let newErrors = {};
@@ -48,46 +65,21 @@ export default function App() {
     if (Object.keys(newErrors).length === 0) {
       // alert("Form submitted successfully!");
       setResendLoginForOTP(true);
-      setLoginOtp(false)
-     
+      setLoginOtp(false);
     }
-  }
-
-  const loginsignup = () => {
-    let newErrors = {};
-
-    if (Object.keys(newErrors).length === 0) {
-      // alert("Form submitted successfully!");
-      setLogin(false);
-      setOpenSignUp(true)
-     
-    }
-  }
-
-  const signuplogin = () => {
-    let newErrors = {};
-
-    if (Object.keys(newErrors).length === 0) {
-      // alert("Form submitted successfully!");
-      setLogin(true);
-      setOpenSignUp(false)
-     
-    }
-  }
-
+  };
 
   const handleSubmit = () => {
     let newErrors = {};
 
     if (!form.email.trim()) {
-      newErrors.email = "Please enter your email.";
+      newErrors.email = "Email is required.";
     } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
       newErrors.email = "Please enter a valid email address.";
     }
-    
 
-    if (!form.password.trim()) { 
-      newErrors.password = "Please enter your password.";
+    if (!form.password.trim()) {
+      newErrors.password = "Password is required.";
     } else if (form.password.length < 8) {
       newErrors.password = "Password must have at least 8 characters.";
     }
@@ -99,7 +91,7 @@ export default function App() {
     }
 
     if (!form.agree) {
-      newErrors.agree = "";
+      newErrors.agree = "You must agree to the terms.";
     }
 
     setErrors(newErrors);
@@ -139,7 +131,18 @@ export default function App() {
     if (Object.keys(newErrors).length === 0) {
       // alert("Form submitted successfully!");
       // setOpenSignUp(false);
-      setOpenOTP(false);
+      setLoginOtp(false);
+      setAccountCreated(true);
+    }
+  };
+
+  const loginresendaccountCreatedHandler = () => {
+    let newErrors = {};
+
+    if (Object.keys(newErrors).length === 0) {
+      // alert("Form submitted successfully!");
+      // setOpenSignUp(false);
+      setResendLoginForOTP(false);
       setAccountCreated(true);
     }
   };
@@ -153,9 +156,9 @@ export default function App() {
       setResendOTP(false);
       setAccountCreated(true);
     }
-  }
+  };
 
-
+  const handleOTPverify = () => {};
 
   const handleLogin = () => {
     let newErrors = {};
@@ -200,37 +203,27 @@ export default function App() {
             <Typography
               variant="h1"
               style={{
-                marginRight:"-35%",
-                marginLeft:"32%",
-                paddingRight:"1%",
-                paddingLeft:"0%",
-                marginTop:"20%"
+                marginRight: "-39%",
+                marginLeft: "45%",
               }}
               sx={{
                 // marginRight: "calc(-15.625%)",
-                fontSize: { xs: "2.5rem", md: "3.9rem" },
+                fontSize: { xs: "2.5rem", md: "3.5rem" },
                 fontWeight: "bold",
-                color: "black",
                 mb: 2,
-              //  ml:90,
                 lineHeight: 1.2,
                 mt: 15,
-                mr:19,
-                ml: 11,
-                marginRight: "calc(-15.625%)"
+                // ml: 11,
+                marginRight: "calc(-15.625%)",
               }}
             >
               Find Your Dream Job with AI-Powered Recommendations
             </Typography>
-            <Typography variant="h6" color="text.secondary" 
-            style={{
-              marginRight:"-15%",
-              marginLeft:"32%",
-              paddingRight:"1%",
-              paddingLeft:"0%",
-              // marginTop:"20%"
-            }}
-            sx={{ mb: 4, ml:34,mr:-19 }}>
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              sx={{ mb: 4, ml: 34, mr: -19 }}
+            >
               Upload Your CV And Let Our AI Find The Best Matches For You
             </Typography>
             <JobSearchForm />
@@ -279,8 +272,7 @@ export default function App() {
         <LoginResendOTPModal
           open={resendloginforotp}
           onClose={() => setResendLoginForOTP(false)}
-          // resendOTP={resendOTP3}
-          // handleSubmit={accountCreatedHandler}
+          handleSubmit={loginresendaccountCreatedHandler}
         />
       </Box>
     </ThemeProvider>
