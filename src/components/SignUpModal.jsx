@@ -270,7 +270,8 @@ const SignUpModal = ({
                   bgcolor: "#1F9874",
                   "&:hover": { bgcolor: "#007867" },
                   mb: 2,
-                  width: "99.5%"
+                  width: "99.5%",
+                  height:"10%"
                 }}
                 onClick={handleSubmit}
               >
