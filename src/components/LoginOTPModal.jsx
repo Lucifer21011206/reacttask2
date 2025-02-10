@@ -36,12 +36,19 @@ const LoginOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
   const handleFormSubmit = () => {
     const otpString = otp.join("");
     if (!otpString || otpString.length === 0) {
-      setError("Please enter OTP.");
+      setError(
+        <Typography sx={{ marginLeft:"-5px" }}> {/* Add margin left here */}
+          Please enter OTP.
+        </Typography>
+      );
       return;
     }
-    
     if (otpString.length !== 6) {
-      setError("Please enter a complete 6-digit OTP.");
+      setError(
+        <Typography sx={{ marginLeft:"-5px" }}>
+        Please enter a complete 6-digit OTP.
+        </Typography>
+        );
       return;
     }
     
@@ -57,23 +64,23 @@ const LoginOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
         </IconButton>
         <Grid container sx={styles.OTPModalBox1}>
           <Grid item xs={12} sm={6} sx={{ padding: isSmallScreen ? 2 : 4 }}>
-            <Typography variant="h5" fontWeight="bold" sx={{mb:1.5}}>
+            <Typography variant="h5" fontWeight="bold" sx={{mb:1.5,ml:-0.4,mt:-0.5}}>
               OTP Verification
             </Typography>
-            <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 }}>
+            <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 ,ml:-0.4}}>
               Please enter the 6-digit verification code sent to 's123@gmail.com'.
               The code is valid for 3 minutes.
             </Typography>
-            <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mb: 3 }}>
+            <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5, mb: 3 ,ml:-0.4}}>
   {otp.map((digit, index) => (
     <TextField
       key={index}
       value={digit}
       onChange={(e) => handleChange(index, e.target.value)}
       sx={{
-        ml: 0.1,
-        mr: 1.5,
-        width: isSmallScreen ? 30 : 40,
+        ml: -0.2,
+        mr: 1.3,
+        width: isSmallScreen ? 30 : 55,
         textAlign: "center",
         "& .MuiOutlinedInput-root": {
           borderRadius: "9px", // Add rounded corners
@@ -95,12 +102,12 @@ const LoginOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
               </Typography>
             )}
             <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", color: "gray", mb: 3 }}>
-              <Typography sx={{ color: "#00A76F", cursor: "pointer" }} onClick={resendOTP}>
+              <Typography sx={{ color: "#00A76F", cursor: "pointer" ,ml:-0.7}} onClick={resendOTP}>
                 Resend
               </Typography>
               <Typography sx={{mr:1.5}}> 02:58</Typography>
             </Box>
-            <Button fullWidth variant="contained" sx={{ ml:-0.5,bgcolor: "#00A76F" ,width:330}} onClick={handleSubmit}>
+            <Button fullWidth variant="contained" sx={{ ml:-0.7,bgcolor: "#00A76F" ,width:330,height:47,mt:-0.7}} onClick={handleFormSubmit}>
               Submit
             </Button>
           </Grid>
