@@ -132,14 +132,14 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
 />
 
             {/* Remember Me & Forgot Password */}
-            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: 2 ,ml:-1.5}}>
               <Checkbox
                 checked={form.agree}
                 onChange={(e) => setForm({ ...form, agree: e.target.checked })}
               />
               <Typography variant="body2">Remember me</Typography>
               <Typography sx={{ ml: "auto" }}>
-                <a href="#" style={{ color: "green" }}>
+                <a href="#" style={{ color: "#008080",textDecoration: "none" }}>
                   Forgot password?
                 </a>
               </Typography>
