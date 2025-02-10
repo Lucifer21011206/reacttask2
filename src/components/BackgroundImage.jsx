@@ -11,10 +11,10 @@ const BackgroundImage = () => {
         ...styles.BackgroundImageBox,
         backgroundSize: isSmallScreen ? "contain" : "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat:"no-repeat",
         width: "100%",
-        mt: 1,
-        mr: -6,
+        mt:1,
+        mr:-6,
         height: isSmallScreen ? "50vh" : "100vh",
       }}
     />
