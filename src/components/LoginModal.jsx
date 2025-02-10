@@ -1,19 +1,31 @@
+import React,{useState} from "react";
 import { 
   Box, Button, Checkbox, IconButton, Modal, TextField, Typography, Grid, 
   useMediaQuery, useTheme ,InputAdornment
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import LockIcon from "@mui/icons-material/Lock";
-import GoogleIcon from "@mui/icons-material/Google";
 import Login from "../images/Login.svg";
 import styles from "./styles";
-import emailicon from "../images/Vector.svg"
-import passwordicon from "../images/Icon.svg"
-import line from "../images/Line.svg"
+import emailicon from "../images/Vector.svg";
+import passwordicon from "../images/Icon.svg";
+import line from "../images/Line.svg";
+import { Visibility, VisibilityOff } from '@mui/icons-material'; 
 
 const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleLogin }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
+  
+    const handleClickShowPassword = () => {
+      setShowPassword(!showPassword);
+    };
+  
+    const handleClickShowConfirmPassword = () => {
+      setShowConfirmPassword(!showConfirmPassword);
+    };
+  
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -41,105 +53,88 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                  {/* First Image - Email Icon */}
-                  <Box
-                    component="img"
-                    src={emailicon} // Replace with your actual email icon image path
-                    alt="Email Icon"
-                    sx={{ width: 24, height: 24, ml: 0.5 }} // Adjust size & spacing
-                  />
-                  
-                  {/* Second Image - Additional Icon */}
-                  <Box
-                    component="img"
-                    src={line} // Replace with your actual second image path
-                    alt="Second Icon"
-                    sx={{ width: 24, height: 24, ml: 1 }} // Adjust spacing between icons
-                  />
-                </InputAdornment>
+                    <Box component="img" src={emailicon} alt="Email Icon" sx={{ width: 24, height: 24, ml: 0.5 }} />
+                    <Box component="img" src={line} alt="Second Icon" sx={{ width: 24, height: 24, ml: 1 }} />
+                  </InputAdornment>
                 ),
               }}
               sx={{
                 mb: 2,
                 "& .MuiOutlinedInput-root": {
-                  ml: 0, 
-                  borderRadius: 3 , // Rounded corners
+                  borderRadius: 3, 
                   "& input": {
-                  ml:-3.5,
-                    padding: "5%", // Adjust padding for better spacing
-                  },
-                  "& .MuiFormHelperText-root": { 
-      textAlign: "left", 
-      ml: 0, 
-      mt:1.7,
-      mb:-1.5,
-      minHeight: "20px", 
-      display: "flex", 
-      alignItems: "center"
-    },
-                }
+                    ml: -3.5,
+                    padding: "5%",
+                  }
+                },
+                "& .MuiFormHelperText-root": { 
+                  textAlign: "left", 
+                  ml: 0, /* Adjust the left margin here */
+                  mt: 1.2,
+                  mb: -1.5,
+                  minHeight: "20px", 
+                  display: "flex", 
+                  alignItems: "center"
+                },
               }}
             />
 
             {/* Password Input Field */}
             <TextField
-  fullWidth
-  placeholder="Enter password"
-  type="password"
-  value={form.password || ""}
-  onChange={(e) => setForm({ ...form, password: e.target.value })}
-  error={!!errors.password}
-  helperText={errors.password}
-  InputProps={{
-    startAdornment: (
-      <InputAdornment position="start">
-      {/* First Image - Email Icon */}
-      <Box
-        component="img"
-        src={passwordicon} // Replace with your actual email icon image path
-        alt="Password Icon"
-        sx={{ width: 24, height: 24, ml: 0.5 }} // Adjust size & spacing
-      />
-      
-      {/* Second Image - Additional Icon */}
-      <Box
-        component="img"
-        src={line} // Replace with your actual second image path
-        alt="Second Icon"
-        sx={{ width: 24, height: 24, ml: 1 }} // Adjust spacing between icons
-      />
-    </InputAdornment>
-    ),
-  }}
-  sx={{
-    mb: 3,
-    "& .MuiOutlinedInput-root": { borderRadius: 3 },
-    "& input": {
-      ml:-1.5,
-        paddingTop: "5%", // Adjusts the vertical position of the placeholder
-        // paddingBottom: "8px", // Ensures content remains centered
-      },
-    "& .MuiFormHelperText-root": { 
-      textAlign: "left", 
-      ml: 0, 
-      mt:1.7,
-      mb:-1.5,
-      minHeight: "20px", 
-      display: "flex", 
-      alignItems: "center"
-    },
-  }}
-/>
+              fullWidth
+              placeholder="Enter password"
+              type={showPassword ? 'text' : 'password'}
+              value={form.password || ""}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              error={!!errors.password}
+              helperText={errors.password}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Box component="img" src={passwordicon} alt="Password Icon" sx={{ width: 24, height: 24, ml: 0.5 }} />
+                    <Box component="img" src={line} alt="Second Icon" sx={{ width: 24, height: 24, ml: 1 }} />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={handleClickShowPassword}
+                              edge="end"
+                              aria-label="toggle password visibility"
+                            >
+                              {showPassword ? <Visibility /> : <VisibilityOff />} {/* Toggle eye icon */}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+              }}
+              sx={{
+                mb: 3,
+                "& .MuiOutlinedInput-root": { borderRadius: 3 },
+                "& input": {
+                  ml: -1.5,
+                  paddingTop: "5%", 
+                },
+                "& .MuiFormHelperText-root": { 
+                  textAlign: "left", 
+                  ml: 0, /* Adjust the left margin here */
+                  mt: 1.2,
+                  mb: -1.5,
+                  minHeight: "20px", 
+                  display: "flex", 
+                  alignItems: "center"
+                },
+              }}
+            />
 
             {/* Remember Me & Forgot Password */}
-            <Box sx={{ display: "flex", alignItems: "center", mb: 2 ,ml:-1.5}}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: 2, ml: -1.5 }}>
               <Checkbox
                 checked={form.agree}
                 onChange={(e) => setForm({ ...form, agree: e.target.checked })}
               />
               <Typography variant="body2">Remember me</Typography>
               <Typography sx={{ ml: "auto" }}>
-                <a href="#" style={{ color: "#008080",textDecoration: "none" }}>
+                <a href="#" style={{ color: "#008080", textDecoration: "none" }}>
                   Forgot password?
                 </a>
               </Typography>
@@ -168,7 +163,7 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
             </Button>
 
             {/* OR Separator */}
-            <Typography sx={{ fontSize: "0.9rem", color: "gray", textAlign: "center", mb: 1.2,mt:1.2 }}>
+            <Typography sx={{ fontSize: "0.9rem", color: "gray", textAlign: "center", mb: 1.2, mt: 1.2 }}>
               OR
             </Typography>
 
@@ -184,16 +179,17 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
                 textTransform: "none"
               }}
             >
-             <img
-    src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
-    alt="Google Logo"
-    style={{ width: 20, height: 20, marginRight: 8 }}
-  />Sign in with Google
+              <img
+                src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
+                alt="Google Logo"
+                style={{ width: 20, height: 20, marginRight: 8 }}
+              />
+              Sign in with Google
             </Button>
 
             {/* Signup Redirect */}
             <Typography sx={{ textAlign: "center", fontSize: "0.9rem", color: "gray", mt: 3 }}>
-              Don't have an account? <a href="#" onClick={loginsignup} style={{ color: "#008080" ,textDecoration: "none"}}>Sign Up</a>
+              Don't have an account? <a href="#" onClick={loginsignup} style={{ color: "#008080", textDecoration: "none" }}>Sign Up</a>
             </Typography>
           </Grid>
 
