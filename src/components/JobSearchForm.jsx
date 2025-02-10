@@ -1,6 +1,10 @@
 import { Box, Button, TextField, InputAdornment, Grid, useMediaQuery, useTheme } from "@mui/material";
 import { Search, LocationOn, Business, Widgets } from "@mui/icons-material";
 import styles from "./styles.jsx";
+import industryimg from "../images/briefcase alternatif.svg"
+import iconn from "../images/Iconn.svg"
+import location from "../images/Group 1171279637.svg"
+
 
 const JobSearchForm = () => {
   const theme = useTheme();
@@ -21,20 +25,29 @@ const JobSearchForm = () => {
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} sm={6} md={3}>
           <TextField
-          style={{marginLeft:"2%", borderRadius:"30%"}}
+          style={{marginLeft:"2.5%", borderRadius:"30%"}}
             select
-            label="Industry"
+            // label="Industry"
             SelectProps={{ native: true }}
             fullWidth
+             variant="standard"
             InputProps={{
+              disableUnderline: true,
               startAdornment: (
                 <InputAdornment position="start">
-                  <Business />
-                </InputAdornment>
+        <img 
+          src={industryimg} 
+          
+          width="16" 
+          height="16"
+          style={{ marginRight: "8px" ,marginLeft:"2px"}} // Adjust spacing
+        />
+      </InputAdornment>
               ),
             }}
+            
           >
-            <option value="">Select Industry</option>
+            <option value="" style={{ color: "#767676" }}>Industry</option>
             <option value="tech">Technology</option>
             <option value="health">Healthcare</option>
             <option value="finance">Finance</option>
@@ -45,11 +58,19 @@ const JobSearchForm = () => {
           <TextField
             placeholder="Location"
             fullWidth
+             variant="standard"
             InputProps={{
+              disableUnderline: true,
               startAdornment: (
                 <InputAdornment position="start">
-                  <LocationOn />
-                </InputAdornment>
+        <img 
+          src={location} 
+          
+         width="16" 
+          height="16"
+          style={{ marginRight: "8px" }} // Adjust spacing
+        />
+      </InputAdornment>
               ),
             }}
           />
@@ -59,11 +80,20 @@ const JobSearchForm = () => {
           <TextField
             placeholder="Search Job"
             fullWidth
+             variant="standard"
+             
             InputProps={{
+              disableUnderline: true,
               startAdornment: (
                 <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
+        <img 
+          src={iconn} 
+          
+           width="16" 
+          height="16"
+          style={{ marginRight: "8px" }} // Adjust spacing
+        />
+      </InputAdornment>
               ),
             }}
           />
