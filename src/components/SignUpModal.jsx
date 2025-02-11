@@ -19,6 +19,7 @@ import emailicon from "../images/Vector.svg";
 import passwordicon from "../images/Icon.svg";
 import line from "../images/Line.svg";
 import textcontent from "./TextContent.jsx"
+import styles from "./styles.jsx";
 
 const SignUpModal = ({
   open,
@@ -219,8 +220,8 @@ const SignUpModal = ({
                     <InputAdornment position="end">
                       <IconButton
                         onClick={handleClickShowConfirmPassword}
-                        edge="end"
-                        aria-label="toggle password visibility"
+                        edge={textcontent.extras.edge}
+                        aria-label={textcontent.extras.arialabel}
                       >
                         {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
@@ -275,7 +276,7 @@ const SignUpModal = ({
                 }}
                 onClick={handleSubmit}
               >
-                {textcontent.btntext.signup}
+                {textcontent.btntext.signupbutton}
               </Button>
 
               {/* OR Divider */}
@@ -309,8 +310,8 @@ const SignUpModal = ({
                 fullWidth
               >
                 <img
-                  src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
-                  alt="Google Logo"
+                  src={textcontent.placeholders.signuprightsideimage}
+                  alt={textcontent.placeholders.alt}
                   style={{ width: 20, height: 20, marginRight: 8 }}
                 />
                 {textcontent.btntext.signwithgoogle}
@@ -327,7 +328,7 @@ const SignUpModal = ({
               >
                 {textcontent.btntext.already}{" "}
                 <a href="#" onClick={signuplogin} style={{ color: "#008080", textDecoration: "none" }}>
-                  Login
+                  {textcontent.btntext.login}
                 </a>
               </Typography>
             </Grid>
@@ -347,17 +348,10 @@ const SignUpModal = ({
                 }}
               >
                 <Box
-                  component="img"
+                  component={textcontent.placeholders.img}
                   src={SignUpRightImage}
-                  alt="Signup Illustration"
-                  sx={{
-                    width: "101%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    flexShrink: 0,
-                    backgroundPosition: "center",
-                  }}
+                  alt={textcontent.placeholders.otprightsidealt}
+                  sx={styles.signuprightimage}
                 />
               </Grid>
             )}
