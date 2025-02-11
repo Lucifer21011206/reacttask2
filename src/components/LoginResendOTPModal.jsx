@@ -40,7 +40,7 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
       if (!otpString || otpString.length === 0) {
         setError(
           <Typography sx={{ marginLeft:"-5px" }}> {/* Add margin left here */}
-            Please enter OTP.
+            {textcontent.placeholders.loginotp1}
           </Typography>
         );
         return;
@@ -48,7 +48,7 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
       if (otpString.length !== 6) {
         setError(
           <Typography sx={{ marginLeft:"-5px" }}>
-          Please enter a complete 6-digit OTP.
+          {textcontent.placeholders.loginotp2}
           </Typography>
           );
         return;
@@ -117,7 +117,7 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
               src={<CheckCircleIcon />} 
               
             >
-              OTP Resent Successfully
+              {textcontent.btntext.otpresent}
             </Button>
           </Grid>
           {!isSmallScreen && (
