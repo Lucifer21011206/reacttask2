@@ -9,7 +9,7 @@ const BackgroundImage = () => {
     <Box
       sx={{
         ...styles.BackgroundImageBox,
-        backgroundSize: isSmallScreen ? "contain" : "cover",
+        backgroundSize: isSmallScreen ? "contain" : "contain",
         backgroundPosition: "center",
         backgroundRepeat:"no-repeat",
         width: "100%",
