@@ -37,12 +37,12 @@ const OTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
   const handleFormSubmit = () => {
     const otpString = otp.join("");
     if (!otpString || otpString.length === 0) {
-      setError("Please enter OTP.");
+      setError(textcontent.placeholders.loginotp1);
       return;
     }
     
     if (otpString.length !== 6) {
-      setError("Please enter a complete 6-digit OTP.");
+      setError(textcontent.placeholders.loginotp2);
       return;
     }
     
@@ -95,9 +95,9 @@ const OTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
             )}
             <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", color: "gray", mb: 3 }}>
               <Typography sx={{ color: "#00A76F", cursor: "pointer" ,ml:0}} onClick={resendOTP}>
-                Resend
+                {textcontent.subtitle.resend}
               </Typography>
-              <Typography sx={{mr:0.8}}> 02:58</Typography>
+              <Typography sx={{mr:0.8}}> {textcontent.subtitle.time}</Typography>
             </Box>
             <Button fullWidth variant="contained" sx={{ ml:0,bgcolor: "#00A76F" ,width:330,height:47,mt:-0.7}} onClick={handleFormSubmit}>
               {textcontent.btntext.submit}
@@ -108,7 +108,7 @@ const OTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
               <Box
                 component="img"
                 src={OTPRightImage}
-                alt="Signup Illustration"
+                alt={textcontent.placeholders.otprightsidealt}
                 sx={{
                   width: "401px",
                   height: "100%",
