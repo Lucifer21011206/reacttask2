@@ -14,6 +14,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import OTPRightImage from "../images/OTPRightImage.svg";
 import styles from "./styles";
 import CheckCircleIcon from "../images/Tick.svg";
+import textcontent from "./TextContent.jsx"
 
 const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
   const theme = useTheme();
@@ -66,11 +67,10 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
         <Grid container sx={styles.OTPModalBox1}>
           <Grid item xs={12} sm={6} sx={{ padding: isSmallScreen ? 2 : 4 }}>
             <Typography variant="h5" fontWeight="bold" sx={{mb:1.5,ml:-0.4,mt:-0.5}}>
-              OTP Verification
+              {textcontent.title.otp}
             </Typography>
             <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 ,ml:-0.4}}>
-              Please enter the 6-digit verification code sent to 's123@gmail.com'.
-              The code is valid for 3 minutes.
+             {textcontent.subtitle.otp}
             </Typography>
             <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5, mb: 3 ,ml:-0.4 }}>
               {otp.map((digit, index) => (
@@ -108,7 +108,7 @@ const LoginResendOTPModal = ({ open, onClose, resendOTP, handleSubmit }) => {
               <Typography sx={{mr:1.5}}> 02:58</Typography>
             </Box>
             <Button fullWidth variant="contained" sx={{ ml:-0.7,bgcolor: "#00A76F" ,width:330,height:47,mt:-0.7}} onClick={handleFormSubmit}>
-              Submit
+              {textcontent.btntext.submit}
             </Button>
             <Button
               fullWidth
