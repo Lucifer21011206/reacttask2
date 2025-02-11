@@ -1,5 +1,6 @@
 import { AppBar, Box, Button, Container, Toolbar } from "@mui/material";
 import Logo from "../images/logo.svg";
+import textcontent from "./TextContent.jsx"
 
 const AppBarComponent = ({ onSignUpClick, onLoginClick }) => {
   return (
@@ -37,7 +38,7 @@ const AppBarComponent = ({ onSignUpClick, onLoginClick }) => {
               elevation={15} 
               onClick={onSignUpClick}
             >
-              Sign Up
+              {textcontent.btntext.signup}
             </Button>
             <Button
               variant="contained"
@@ -53,7 +54,7 @@ const AppBarComponent = ({ onSignUpClick, onLoginClick }) => {
               
               onClick={onLoginClick}
             >
-              Login
+              {textcontent.btntext.login}
             </Button>
           </Box>
         </Toolbar>
