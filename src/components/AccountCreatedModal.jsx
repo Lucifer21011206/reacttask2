@@ -9,7 +9,7 @@ const AccountCreatedModal = ({ open, onClose }) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <Box sx={styles.BoxStyle}>
         <IconButton
           onClick={onClose}
@@ -26,7 +26,7 @@ const AccountCreatedModal = ({ open, onClose }) => {
             </Typography>
 
             <Box display="flex" justifyContent="center" my={2}>
-              <Box component="img" src={check} sx={{ width: 70, height: 70 , mt: 3, mb:2.5}} />
+              <Box component="img" src={check} sx={styles.accountcheckicon} />
             </Box>
 
             <Typography variant="h5" fontWeight="bold">{textcontent.title.accountcreated2}</Typography>
@@ -42,19 +42,19 @@ const AccountCreatedModal = ({ open, onClose }) => {
             <Button
               fullWidth
               variant="contained"
-              sx={{ bgcolor: "#D3D3D3", color: "black", mt: 2 ,height:45}}
+              sx={styles.accountcreatecv}
               
             >
               {textcontent.btntext.createcv}
             </Button>
           </Grid>
           {!isSmallScreen && (
-            <Grid item xs={6} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Grid item xs={6} sx={styles.accountrightimage2}>
               <Box
                 component="img"
                 src={AccountCreatedImage}
-                alt="Signup Illustration"
-                sx={{ width: "401px", height: "500px", maxWidth: "401px", objectFit: "cover" }}
+                alt={textcontent.subtitle.accimg}
+                sx={styles.accountrightimage}
               />
             </Grid>
           )}
