@@ -15,7 +15,8 @@ import textcontent from "./TextContent.jsx"
 
 const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleLogin }) => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isMediumScreen = useMediaQuery("(max-width:984px)");
   const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
@@ -30,14 +31,37 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
   
 
   return (
-    <Modal open={open} onClose={onClose}>
-      <Box sx={styles.BoxStyle}>
-        <IconButton onClick={onClose} sx={styles.IconButton2}>
+    <Modal open={open} onClose={onClose}  sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <Box sx={{ 
+              position: "relative", 
+              display: "flex", 
+              justifyContent: "center",
+              margin: isMediumScreen ? '40px' : '0' // Add margin if screen width is less than 984px
+            }}>
+
+        {/* <IconButton onClick={onClose} sx={styles.IconButton2}>
           <CloseIcon />
-        </IconButton>
-        <Grid container sx={styles.Box}>
-          <Grid item xs={12} sm={6} sx={{ padding: isSmallScreen ? 2 : 4 }}>
-            <Typography variant="h5" fontWeight="bold">
+        </IconButton> */}
+
+        <Box
+                  sx={{
+                    width: "100%",
+                    maxWidth: "900px",
+                    bgcolor: "background.paper",
+                    borderRadius: 6,
+                    boxShadow: 24,
+                    overflow: "hidden",
+                    position: "relative",
+                  }}
+                >
+        <Grid container>
+          <Grid item xs={12} sm={6} sx={{
+                padding: 4,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}>
+            <Typography variant="h5" fontWeight="bold" gutterBottom>
               {textcontent.title.login}
             </Typography>
             <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 ,mt:2}}>
@@ -197,7 +221,14 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
 
           {/* Right-Side Illustration (Only on Large Screens) */}
           {!isSmallScreen && (
-            <Grid item xs={6} sx={styles.Box2}>
+            <Grid item xs={6} sx={{
+                  position: "relative",
+                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  bgcolor: "#f0f0f0",
+                }}>
               <Box
                 component="img"
                 src={Login}
@@ -215,7 +246,44 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
           )}
         </Grid>
       </Box>
-    </Modal>
+      {/* Close Icon Button (Properly Positioned Outside with Margins) */}
+              <IconButton
+                onClick={onClose}
+                sx={{
+                  position: "absolute",
+                  top: "-39px",
+                  right: "-28px",
+                  zIndex: 10,
+                  color: "text.primary",
+                  bgcolor: "background.paper",
+                  borderRadius: "50%",
+                  boxShadow: 2,
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    bgcolor: "background.default",
+                  },
+                  "@media (max-width: 900px)": {
+                    top: "-39px",
+                    right: "-28px",
+                  },
+                  "@media (max-width: 600px)": {
+                    top: "-39px",
+                    right: "-28px",
+                  },
+                  "@media (max-width: 400px)": {
+                    top: "-39px",
+                    right: "-28px",
+                  },
+                  "@media (max-width: 300px)": {
+                    top: "-39px",
+                    right: "-28px",
+                  },
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Box>
+          </Modal>
   );
 };
 
