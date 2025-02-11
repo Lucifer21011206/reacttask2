@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import check from "../images/check.svg";
 import AccountCreatedImage from "../images/AccountCreatedImage.svg";
 import styles from "./styles.jsx";
+import textcontent from "./TextContent.jsx"
 
 const AccountCreatedModal = ({ open, onClose }) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
@@ -19,16 +20,16 @@ const AccountCreatedModal = ({ open, onClose }) => {
 
         <Grid container sx={styles.Box}>
           <Grid item xs={12} sm={6} sx={{ padding: 4, textAlign: "center" }}>
-            <Typography sx={{mt:2.4}} variant="h5" fontWeight="bold">Account Created</Typography>
+            <Typography sx={{mt:2.4}} variant="h5" fontWeight="bold">{textcontent.title.accountcreatedtext}</Typography>
             <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3, mt: 1 }}>
-              Your account has been created successfully.
+              {textcontent.subtitle.accountcreatedtext}
             </Typography>
 
             <Box display="flex" justifyContent="center" my={2}>
               <Box component="img" src={check} sx={{ width: 70, height: 70 , mt: 3, mb:2.5}} />
             </Box>
 
-            <Typography variant="h5" fontWeight="bold">Complete Your Profile</Typography>
+            <Typography variant="h5" fontWeight="bold">{textcontent.title.accountcreated2}</Typography>
 
             <Button
               fullWidth
@@ -36,7 +37,7 @@ const AccountCreatedModal = ({ open, onClose }) => {
               sx={{ fontSize: "0.9rem", bgcolor: "#D3D3D3", color: "black", mt: 3, height:45 }}
               
             >
-              Upload your CV/Resume
+             {textcontent.btntext.uploadcv}
             </Button>
             <Button
               fullWidth
@@ -44,7 +45,7 @@ const AccountCreatedModal = ({ open, onClose }) => {
               sx={{ bgcolor: "#D3D3D3", color: "black", mt: 2 ,height:45}}
               
             >
-              Create your CV/Resume
+              {textcontent.btntext.createcv}
             </Button>
           </Grid>
           {!isSmallScreen && (
