@@ -18,6 +18,7 @@ import SignUpRightImage from "../images/signuprightimage1.svg";
 import emailicon from "../images/Vector.svg";
 import passwordicon from "../images/Icon.svg";
 import line from "../images/Line.svg";
+import textcontent from "./TextContent.jsx"
 
 const SignUpModal = ({
   open,
@@ -81,17 +82,16 @@ const SignUpModal = ({
               }}
             >
               <Typography variant="h5" marginBottom="3%" fontWeight="bold" gutterBottom>
-                Create Your Account
+                {textcontent.title.signup}
               </Typography>
               <Typography sx={{ fontSize: "0.9rem", color: "#333333", mb: 3 }}>
-                To Get Started, We Need You To Create An Account With Us. It’s A Quick And Straightforward Process. That Will Only 
-                Take A Few Minutes.
+                {textcontent.subtitle.signup}
               </Typography>
 
               {/* Email Field */}
               <TextField
                 fullWidth
-                placeholder="Enter email address"
+                placeholder={textcontent.placeholders.email}
                 value={form.email || ""}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 error={!!errors.email}
@@ -136,7 +136,7 @@ const SignUpModal = ({
               {/* Password Field */}
               <TextField
                 fullWidth
-                placeholder="Enter password"
+                placeholder={textcontent.placeholders.password}
                 type={showPassword ? 'text' : 'password'}
                 value={form.password || ''}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
@@ -192,7 +192,7 @@ const SignUpModal = ({
               {/* Confirm Password Field */}
               <TextField
                 fullWidth
-                placeholder="Enter confirm password"
+                placeholder={textcontent.placeholders.confirmpassword}
                 type={showConfirmPassword ? 'text' : 'password'}
                 value={form.confirmPassword || ""}
                 onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
@@ -254,8 +254,8 @@ const SignUpModal = ({
                   }
                 />
                 <Typography variant="body2" sx={{ mt: -0.5 }}>
-                  I agree to the <a href="#" style={{ color: "#3F76D1", textDecoration: "none" }}>Terms & Conditions</a> and{" "}
-                  <a href="#" style={{ color: "#3F76D1", textDecoration: "none" }}>Privacy Policy</a> and confirm that the country selection is correct
+                  {textcontent.termsandconditions.agree}<a href="#" style={{ color: "#3F76D1", textDecoration: "none" }}> {textcontent.termsandconditions.tc}</a> and{" "}
+                  <a href="#" style={{ color: "#3F76D1", textDecoration: "none" }}>{textcontent.termsandconditions.pp}</a> {textcontent.termsandconditions.andconfirm}
                 </Typography>
               </Box>
               {errors.agree && (
@@ -275,7 +275,7 @@ const SignUpModal = ({
                 }}
                 onClick={handleSubmit}
               >
-                Create an account
+                {textcontent.btntext.signup}
               </Button>
 
               {/* OR Divider */}
@@ -288,7 +288,7 @@ const SignUpModal = ({
                   textAlign: "center",
                 }}
               >
-                OR
+                {textcontent.btntext.or}
               </Typography>
 
               {/* Google Sign-In Button */}
@@ -313,7 +313,7 @@ const SignUpModal = ({
                   alt="Google Logo"
                   style={{ width: 20, height: 20, marginRight: 8 }}
                 />
-                Sign in with Google 
+                {textcontent.btntext.signwithgoogle}
               </Button>
 
               {/* Login Link */}
@@ -325,7 +325,7 @@ const SignUpModal = ({
                   mt: 3,
                 }}
               >
-                Already have an account?{" "}
+                {textcontent.btntext.already}{" "}
                 <a href="#" onClick={signuplogin} style={{ color: "#008080", textDecoration: "none" }}>
                   Login
                 </a>
