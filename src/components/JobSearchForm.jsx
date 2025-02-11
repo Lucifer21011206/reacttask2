@@ -1,56 +1,40 @@
 import { Box, Button, TextField, InputAdornment, Grid, useMediaQuery, useTheme } from "@mui/material";
-import { Search, LocationOn, Business, Widgets } from "@mui/icons-material";
 import styles from "./styles.jsx";
-import industryimg from "../images/briefcase alternatif.svg"
-import iconn from "../images/Iconn.svg"
-import location from "../images/Group 1171279637.svg"
-
+import industryimg from "../images/briefcase alternatif.svg";
+import iconn from "../images/Iconn.svg";
+import location from "../images/Group 1171279637.svg";
+import textContent from "./TextContent.jsx"; // Ensure this is the correct import
 
 const JobSearchForm = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box 
-    style={{
-      borderradius:"40%",
-      marginRight:"-37%",
-      marginLeft:"31%",
-      paddingRight:"1%",
-      paddingLeft:"0%",
-      
-      // marginTop:"20%"
-    }}
-    sx={styles.JobSearchFormBox}>
+    <Box
+      style={styles.jobsearchbox1}
+      sx={styles.JobSearchFormBox}
+    >
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} sm={6} md={3}>
           <TextField
-          style={{marginLeft:"2.5%", borderRadius:"30%"}}
+            style={{ marginLeft: "2.5%", borderRadius: "30%" }}
             select
-            // label="Industry"
             SelectProps={{ native: true }}
             fullWidth
-             variant="standard"
+            variant="standard"
             InputProps={{
               disableUnderline: true,
               startAdornment: (
                 <InputAdornment position="start">
-        <img 
-          src={industryimg} 
-          
-          width="16" 
-          height="16"
-          style={{ marginRight: "8px" ,marginLeft:"2px"}} // Adjust spacing
-        />
-      </InputAdornment>
+                  <img src={industryimg} width="16" height="16" style={{ marginRight: "8px", marginLeft: "2px" }} />
+                </InputAdornment>
               ),
             }}
-            
           >
-            <option value="" style={{ color: "#767676" }}>Industry</option>
-            <option value="tech">Technology</option>
-            <option value="health">Healthcare</option>
-            <option value="finance">Finance</option>
+            <option value="" style={{ color: "#767676" }}>{textContent.industry.Industry}</option>
+            <option value="tech">{textContent.industry.tech}</option>
+            <option value="health">{textContent.industry.health}</option>
+            <option value="finance">{textContent.industry.finance}</option>
           </TextField>
         </Grid>
 
@@ -58,19 +42,13 @@ const JobSearchForm = () => {
           <TextField
             placeholder="Location"
             fullWidth
-             variant="standard"
+            variant="standard"
             InputProps={{
               disableUnderline: true,
               startAdornment: (
                 <InputAdornment position="start">
-        <img 
-          src={location} 
-          
-         width="16" 
-          height="16"
-          style={{ marginRight: "8px" }} // Adjust spacing
-        />
-      </InputAdornment>
+                  <img src={location} width="16" height="16" style={{ marginRight: "8px" }} />
+                </InputAdornment>
               ),
             }}
           />
@@ -80,20 +58,13 @@ const JobSearchForm = () => {
           <TextField
             placeholder="Search Job"
             fullWidth
-             variant="standard"
-             
+            variant="standard"
             InputProps={{
               disableUnderline: true,
               startAdornment: (
                 <InputAdornment position="start">
-        <img 
-          src={iconn} 
-          
-           width="16" 
-          height="16"
-          style={{ marginRight: "8px" }} // Adjust spacing
-        />
-      </InputAdornment>
+                  <img src={iconn} width="16" height="16" style={{ marginRight: "8px" }} />
+                </InputAdornment>
               ),
             }}
           />
@@ -109,7 +80,7 @@ const JobSearchForm = () => {
               "&:hover": { bgcolor: "#007867" },
             }}
           >
-            Find Job
+            {textContent.industry.findjob}
           </Button>
         </Grid>
       </Grid>
