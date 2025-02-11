@@ -10,6 +10,8 @@ import emailicon from "../images/Vector.svg";
 import passwordicon from "../images/Icon.svg";
 import line from "../images/Line.svg";
 import { Visibility, VisibilityOff } from '@mui/icons-material'; 
+import textcontent from "./TextContent.jsx"
+
 
 const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleLogin }) => {
   const theme = useTheme();
@@ -36,16 +38,16 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
         <Grid container sx={styles.Box}>
           <Grid item xs={12} sm={6} sx={{ padding: isSmallScreen ? 2 : 4 }}>
             <Typography variant="h5" fontWeight="bold">
-              Login Now
+              {textcontent.title.login}
             </Typography>
             <Typography sx={{ fontSize: "0.9rem", color: "gray", mb: 3 ,mt:2}}>
-              To get started, log in with your account. It’s a quick and easy process that only takes a few minutes.
+              {textcontent.subtitle.login}
             </Typography>
 
             {/* Email Input Field */}
             <TextField
               fullWidth
-              placeholder="Enter email address"
+              placeholder={textcontent.placeholders.email}
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               error={!!errors.email}
@@ -82,7 +84,7 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
             {/* Password Input Field */}
             <TextField
               fullWidth
-              placeholder="Enter password"
+              placeholder={textcontent.placeholders.password}
               type={showPassword ? 'text' : 'password'}
               value={form.password || ""}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
@@ -159,12 +161,12 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
               }}
               onClick={handleLogin}
             >
-              Login
+              {textcontent.btntext.login}
             </Button>
 
             {/* OR Separator */}
             <Typography sx={{ fontSize: "0.9rem", color: "gray", textAlign: "center", mb: 1.2, mt: 1.2 }}>
-              OR
+            {textcontent.btntext.or}
             </Typography>
 
             {/* Google Sign-In Button */}
@@ -184,7 +186,7 @@ const LoginModal = ({ open, onClose, loginsignup, form, setForm, errors, handleL
                 alt="Google Logo"
                 style={{ width: 20, height: 20, marginRight: 8 }}
               />
-              Sign in with Google
+              {textcontent.btntext.signwithgoogle}
             </Button>
 
             {/* Signup Redirect */}
